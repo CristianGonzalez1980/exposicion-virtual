@@ -1,4 +1,6 @@
 
+![CI STATUS](https://github.com/CristianGonzalez1980/exposicion-virtual/workflows/.github/workflows/main.yml/badge.svg)
+
 # Expo Virtual
 Armar el setup inicial del proyecto
 
