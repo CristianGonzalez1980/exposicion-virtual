@@ -50,7 +50,7 @@ const Home = () => {
    </div>
     <SliderProducts />
     <div>
-        <h5 id="googleFont" className='productos'> Nuestras Empresas</h5>
+        <h5 id="googleFont" className='productos'>Empresas Expositoras</h5>
     </div>
    <div>
       {
@@ -78,7 +78,7 @@ const Home = () => {
         noWrap: false,
         numVisible: 4,
         onCycleTo: null,
-        padding: 10,
+        padding: 30,
         shift: 0
       }}
     />
