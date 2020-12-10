@@ -32,6 +32,11 @@ button {
   padding-bottom: 1%;
 }
 
-.row {
+.centerField {
   text-align: center;
+}
+
+td,
+th {
+ text-align:center;
 }

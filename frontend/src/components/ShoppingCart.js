@@ -149,7 +149,7 @@ const ShoppingCart = () => {
                 </table>
               </div>
               <div className="col s12">
-                <div className="row">
+                <div className="row centerField">
                   <h4>
                     <strong>
                       Precio total (sin envío): $ {precioTotal(context.cart)}
@@ -157,13 +157,13 @@ const ShoppingCart = () => {
                   </h4>
                 </div>
               </div>
-              <div className="row">
+              <div className="row centerField">
                 <div className="col s6 offset-6">
                   <input id="inptCartCant" placeholder="Código Postal" value={codigoPostal} onChange={(e) => setCodigoPostal(e.target.value)} />
                   <a className="waves-effect waves-light btn" onClick={calcularEnvio} style={{ marginLeft: 20 }}>Calcular envío</a>
                 </div>
               </div>
-              <div className="row">
+              <div className="row centerField">
                 <div className="col s6">
                   <h4>
                     <strong>
@@ -180,7 +180,7 @@ const ShoppingCart = () => {
                 </div>
               </div>
 
-              <div className="row">
+              <div className="row centerField">
                 <h3>
                   <strong>
                     Precio total: {precioTotalConEnvio()}
