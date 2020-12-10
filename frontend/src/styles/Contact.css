@@ -26,3 +26,8 @@
     color: #4cc14c;
     font-weight: bold;
 }
+
+.red.lighten-2 {
+    background-color:#cb1f30 !important;
+    color: white;
+   }

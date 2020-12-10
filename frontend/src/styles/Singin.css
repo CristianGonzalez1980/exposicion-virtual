@@ -8,6 +8,7 @@
 #botonLogin {
   margin-left: 46%;
   margin-top: 10%;
+  color: white;
 }
 
 #H5Register {
@@ -29,8 +30,10 @@
 #inputLogin {
   width: 50%;
   margin-left: 27%;
+  margin-left: 27%;
+  color: white;
 }
 
 #fondoTarjetaLogin {
-  background-color: lightcoral;
+  background-color: #cb1f30;
 }
