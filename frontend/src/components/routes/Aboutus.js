@@ -7,10 +7,10 @@ const Aboutus = () => {
     return (
       <div className="mt-4">
         
-        <h1 id='textH1'> Quienes Somos</h1>
+        <h3 id='textH1'> Quienes Somos</h3>
         <h3 id="textH3">2001 - 2020</h3>
-        <h2 id="textH2">19 AÑOS JUNTO A ARTISTAS Y ARTESANOS
-        UNA EXPERIENCIA QUE NOS GUSTA COMPARTIR </h2>
+        <h3 id="textH2">19 AÑOS JUNTO A ARTISTAS Y ARTESANOS
+        UNA EXPERIENCIA QUE NOS GUSTA COMPARTIR </h3>
 
         <p id='textP'>Todo comienza en agosto de 2001, ante el crecimiento y la difusión de la Pintura Decorativa, nos dimos cuenta que faltaba un canal gráfico de información que difundiera la actividad que comenzaba a expandirse. Un espacio donde profesoras, talleres, librerías artísticas y empresas relacionadas al arte decorativo pudieran mostrar y transmitir todo su conocimiento y su amor por el arte. Así nació Guía del Arte, el espacio donde el arte, las manualidades y color viven.</p>
 
@@ -27,7 +27,7 @@ const Aboutus = () => {
 
         <p id='textP'>Somos un equipo de manos que hacen lo que el corazón siente.</p>
 
-        <p id='textP'>Flia. Saucedo Piñero</p>
+        <p id='textEnd'>Flia. Saucedo Piñero</p>
 
       </div>
   

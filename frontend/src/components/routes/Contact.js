@@ -37,21 +37,21 @@ const Contact = () => {
 			  <div className="input-field col s12">
 					<div id="header" className="form-group text-left"> 
 						<i className="material-icons prefix">account_circle</i>
-						<input required type="text" value={contact.userName} name="userName" onChange={handleChange} className="form-control" placeholder="Tu nombre" />
+						<input id="input_form" required type="text" value={contact.userName} name="userName" onChange={handleChange} className="form-control" placeholder="Tu nombre" />
 						<label for="icon_prefix">Nombre</label>					
 					</div>
 			  </div>
 			  <div className="input-field col s12">
 					<div className="form-group text-left">
 						<i className="material-icons prefix">email</i>
-						<input required type="text" value={contact.userEmail} name="userEmail" onChange={handleChange} className="form-control" placeholder="Tu email" />
+						<input id="input_form" required type="text" value={contact.userEmail} name="userEmail" onChange={handleChange} className="form-control" placeholder="Tu email" />
 						<label for="icon_telephone">Email</label>
 					</div>
 			  </div>
 			  <div className="input-field col s12">
 					<div className="form-group text-left"> 
 						<i className="material-icons prefix">phone</i>
-						<input value={contact.userTel} required type="text" name="userTel" onChange={handleChange}  className="form-control" placeholder="Tu teléfono" />
+						<input id="input_form" value={contact.userTel} required type="text" name="userTel" onChange={handleChange}  className="form-control" placeholder="Tu teléfono" />
 						<label for="icon_telephone">Teléfono</label>
 					</div>
 			  </div>
