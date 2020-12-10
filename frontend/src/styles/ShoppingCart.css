@@ -20,4 +20,18 @@
 
 button {
   cursor: pointer;
+  width: 40%;
+}
+
+.cart {
+  width: 80%;
+  padding-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 0%;
+  padding-bottom: 1%;
+}
+
+.row {
+  text-align: center;
 }
