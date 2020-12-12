@@ -1,14 +1,14 @@
 .mycard {
   width: 40%;
-  height: 44rem;
-  margin-left: 33%;
-  margin-top: 5rem;
+  height: 34rem;
+  margin-left: 30%;
+  margin-right: 30%; 
+  margin-top: 13rem;
 }
 
 #botonLogin {
-  margin-left: 46%;
-  margin-top: 10%;
   color: white;
+  margin-left: 33%;
 }
 
 #H5Register {

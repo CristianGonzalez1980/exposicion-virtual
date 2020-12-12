@@ -7,7 +7,6 @@ import ShopContext from './context/shop-context'
 export var sendMethodCostTopLevel = null
 export var sendMethodNameTopLevel = null
 
-
 export const precioTotal = (products) => {
   let contador = 0
   products.forEach((cartItem) => {
@@ -38,7 +37,6 @@ export const volumenTotal = (products) => {
 }
 
 const ShoppingCart = () => {
-
   /**USO EL CONTEXTO DE SHOPCONTEXT */
   const context = useContext(ShopContext);
   const [codigoPostal, setCodigoPostal] = useState(null)
@@ -88,7 +86,6 @@ const ShoppingCart = () => {
     }
   }
 
-
   useEffect(() => {
     //console.log(context);
   }, []);
@@ -99,7 +96,6 @@ const ShoppingCart = () => {
      *    ELEMENTOS EN EL CARRITO
      */
     <React.Fragment>
-
       {
         context.cart.length <= 0 ?
           <div id="noHayElementos" className="numero">
@@ -131,7 +127,6 @@ const ShoppingCart = () => {
                             )}
                           >-</button>
                           <input id="inptCartCant" className="validate" value={cartItem.quantity} />
-
                           <button onClick={context.addProductToCart.bind(this, cartItem)}>+</button>
                         </div>
                       </td>
@@ -179,7 +174,6 @@ const ShoppingCart = () => {
                   </h4>
                 </div>
               </div>
-
               <div className="row centerField">
                 <h3>
                   <strong>
@@ -198,7 +192,6 @@ const ShoppingCart = () => {
                     </button>
                     </Link>
                   }
-
                 </div>
               </div>
             </div>

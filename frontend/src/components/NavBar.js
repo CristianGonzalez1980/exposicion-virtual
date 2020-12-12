@@ -105,20 +105,16 @@ const NavBar = () => {
                             </div>
                             <div className="col s1">
                                 <Link to="/shoppingcart">
-
                                     <p id='cantidadProductos'>
                                         {context.cart.reduce((count, curItem) => { return count + curItem.quantity; }, 0)}
                                     </p>
-
                                     <i className="small material-icons left" id="iconCart">shopping_cart</i>
-
                                 </Link>
                             </div>
                             <div id="colBotonSesion" className="col s1">
                                 {renderButton()}
                             </div>
                         </div>
-
                         <nav>
                             <div className="nav-wrapper">
                                 <a href="" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
@@ -133,7 +129,6 @@ const NavBar = () => {
                                 </ul>
                             </div>
                         </nav>
-
                         <ul className="sidenav" id="mobile-demo">
                             <li ><Link to="/">Inicio</Link></li>
                             <li ><Link to="/suppliers">Empresas</Link></li>

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ResultSearchProduct from './ResultSearchProduct'
 
-
-
 const ResultSearch = () => {
 
     const [products, setProductos] = useState([]) 
@@ -23,7 +21,6 @@ const ResultSearch = () => {
               No existen resultados para la búsqueda 
             </h2>)
           }else{
-
             return (
               <div className="preloader-wrapper active">
                 <div className="spinner-layer spinner-red-only">
@@ -44,7 +41,6 @@ const ResultSearch = () => {
     useEffect(() => {  
           fetch(`http://localhost:7000/products/search?text=${textsearch}`, {
             headers: {
-        
             }
           })
             .then((res)=> {
@@ -57,10 +53,8 @@ const ResultSearch = () => {
             .catch((err => {
               console.log(err)
             }))
-        
-    
       }, [textsearch]);
-    
+
       console.log(products)
     return (
         <div>
@@ -68,8 +62,6 @@ const ResultSearch = () => {
             <ResultSearchProduct products={products}/>
         </div>
     )
-
 }
-
 
 export default ResultSearch;

@@ -30,7 +30,7 @@ const UpdateProveedorForm = (props) => {
 
   const agregarProveedor = () => {
     console.log("preguntandoSiSubeImagen")
-    if(SubirAlaNubeImagen()){
+    if (SubirAlaNubeImagen()) {
       console.log("POSITIVOSiSubeImagen")
       const data = new FormData();
       data.append("file", companyImage);
@@ -42,7 +42,6 @@ const UpdateProveedorForm = (props) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          //console.log(data);
           setUrlimage(data.url);
           setpostear(true)
         })
@@ -54,7 +53,7 @@ const UpdateProveedorForm = (props) => {
       setUrlimage(companyImage)
     }
     console.log("preguntandoSiSubeBanner")
-    if(SubirAlaNubeBanner()){
+    if (SubirAlaNubeBanner()) {
       console.log("POSITIVOSiSubeBanner")
       const data = new FormData();
       data.append("file", companyBanner);
@@ -64,46 +63,44 @@ const UpdateProveedorForm = (props) => {
         method: "POST",
         body: data,
       })
-    .then((res) => res.json())
-    .then((data) => {
-      setUrlBanner(data.url);
-      setpostear(true)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }else{
-    setUrlBanner(companyBanner)
-  }
+        .then((res) => res.json())
+        .then((data) => {
+          setUrlBanner(data.url);
+          setpostear(true)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setUrlBanner(companyBanner)
+    }
   };
 
   const SubirAlaNubeImagen = () => {
     return (typeof companyImage !== "string")
   }
 
-  const SubirAlaNubeBanner  = () => {
+  const SubirAlaNubeBanner = () => {
     return (typeof companyBanner !== "string")
   }
 
   const postComapanyImage = () => {
-    if(SubirAlaNubeImagen()){
+    if (SubirAlaNubeImagen()) {
       return urlimage
     } else {
       return companyImage
     }
   }
 
-  const postCompanyBanner = () =>{
-    if(SubirAlaNubeBanner()){
+  const postCompanyBanner = () => {
+    if (SubirAlaNubeBanner()) {
       return urlBanner
-    }else{
+    } else {
       return companyBanner
     }
   }
 
   const postearUpdate = () => {
-
-
     fetch(`http://localhost:7000/companies/${company.id}`, {
       method: "PUT",
       headers: {
@@ -133,13 +130,10 @@ const UpdateProveedorForm = (props) => {
       .catch((err) => {
         console.log(err);
       });
-
   };
-
   console.log(company)
+
   return (
-
-
     <div class="row">
       <form class="col s12">
         <div class="row">
@@ -173,12 +167,12 @@ const UpdateProveedorForm = (props) => {
             <div class="btn" id='buttonUploadImages'>
               <span>Cargar Imagen</span>
               <input type="file" onChange={(e) => {
-                                                    setcompanyImage(e.target.files[0])
-                                                    setSubir(true)
-                                                    }} />
+                setcompanyImage(e.target.files[0])
+                setSubir(true)
+              }} />
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" value={typeof companyImage !== 'string' ? companyImage.name : companyImage } />
+              <input class="file-path validate" type="text" value={typeof companyImage !== 'string' ? companyImage.name : companyImage} />
             </div>
           </div>
         </form>
@@ -187,10 +181,9 @@ const UpdateProveedorForm = (props) => {
             <div class="btn" id='buttonUploadBanner'>
               <span>Cargar Banner</span>
               <input type="file" onChange={(e) => {
-                                                    setcompanyBanner(e.target.files[0])
-                                                    setSubir(true)
-              
-              }}/>
+                setcompanyBanner(e.target.files[0])
+                setSubir(true)
+              }} />
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text" value={typeof companyBanner !== 'string' ? companyBanner.name : companyBanner} />
@@ -199,37 +192,23 @@ const UpdateProveedorForm = (props) => {
         </form>
         <div class="row">
           <div class="col s12">
-
             <a onClick={() => {
-
-              if(subir){
+              if (subir) {
                 console.log("ENTRE AL SUBIR VERDADERO")
                 agregarProveedor();
-                setpostear(true)  
-              }else{
+                setpostear(true)
+              } else {
                 console.log("ENTRE AL SUBIR FALSO")
                 postearUpdate()
               }
-              //console.log(companyImage)
-              //console.log(urlimage)
-              //console.log(companyImage === urlimage)        
-              
-              //if (!companyName ||
-              //  !companyImage ||
-              //  !companyBanner ||
-              //  !facebook ||
-              //  !instagram ||
-              //  !web) {
-              //  postearUpdate()
-              //}
             }
             }
               class="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Modificar Proveedor</a>
-
           </div>
         </div>
       </form>
     </div>
   );
 };
+
 export default UpdateProveedorForm;

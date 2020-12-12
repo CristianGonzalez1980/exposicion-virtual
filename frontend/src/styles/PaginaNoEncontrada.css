@@ -9,7 +9,7 @@ body {
   color: rgb(255, 0, 0);
   font-size: 12em;
   text-shadow: 2px 5px #272634;
-  margin-left: 48.9%;
+  margin-left: 37rem;
   position: absolute;
 }
 .numero {
@@ -18,12 +18,12 @@ body {
   font-size: 15rem;
   margin-top: 8rem;
   text-shadow: 3px 3px #272634;
-  margin-left: 41rem;
+  margin-left: 27rem;
 }
 .leyenda {
   font-family: "Caveat", cursive;
   color: #504b4b;
   font-size: 2.6em;
   margin-top: -0.9em;
-  margin-left: 45rem;
+  margin-left: 30rem;
 }

@@ -13,7 +13,6 @@ import { precioTotal, sendMethodCostTopLevel, sendMethodNameTopLevel } from '../
 //   M.Autocomplete.init(elems, {});
 // });
 
-
 const TestForm = () => {
   const history = useHistory();
   //    //REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel/credentials
@@ -74,7 +73,6 @@ const TestForm = () => {
         "bin": bin
       }, setPaymentMethod);
     }
-
   };
 
   function setPaymentMethod(status, response) {
@@ -87,7 +85,6 @@ const TestForm = () => {
       console.log(paymentmethodThumbnailStyle)
       if (response[0].additional_info_needed.includes("issuer_id")) {
         getIssuers(response[0].id);
-
       } else {
         document.getElementById('issuerInput').classList.add("hidden");
 
@@ -96,7 +93,6 @@ const TestForm = () => {
           document.getElementById('amount').value
         );
       }
-
     }
   }
 
@@ -110,7 +106,6 @@ const TestForm = () => {
   function setIssuers(status, response) {
     if (status === 200) {
       let issuerSelect = document.getElementById('issuer');
-
       response.forEach(issuer => {
         let opt = document.createElement('option');
         opt.text = issuer.name;
@@ -173,7 +168,6 @@ const TestForm = () => {
     if (!doSubmit) {
       let $form = document.getElementById('paymentForm');
       window.Mercadopago.createToken($form, setCardTokenAndPay);
-
       return false;
     }
   };
@@ -181,8 +175,6 @@ const TestForm = () => {
   const updatePaymentMethodThumbnail = {
     backgroundImage: paymentmethodThumbnail,
   };
-
-
 
   function setCardTokenAndPay(status, response) {
     if (status === 200 || status === 201) {
@@ -200,14 +192,11 @@ const TestForm = () => {
       alert("Verify filled data!\n" + JSON.stringify(response, null, 4));
     }
   };
-
   /***
    * UX functions 
    */
 
-
   function cleanCardInfo() {
-
     setpaymentmethodThumbnailStyle({ backgroundImage: "", })
     document.getElementById('issuerInput').classList.add("hidden");
     document.getElementById('issuer').options.length = 0;
@@ -280,7 +269,6 @@ const TestForm = () => {
     }
   };
 
-
   const actualizarBaseDeDatos = () => {
     fetch("http://localhost:7000/productSales", {
       method: "PUT",
@@ -340,7 +328,6 @@ const TestForm = () => {
       }))}
     </select>)
   }
-
   // function select(){
   //   return(
   //     // <select  id="Category" form="bannerform" type="text" class="validate">
@@ -352,15 +339,10 @@ const TestForm = () => {
   //     // </select>
   //   )
 
-
-
-
   return (
-
     <div>
       {checkoutShoppingCart()}
       <section class="payment-form dark">
-
         <div class="container_payment">
           <div class="block-heading">
             <h2>Pago con tarjeta</h2>
@@ -471,9 +453,9 @@ const TestForm = () => {
             </div>
           </div>
         </div>
-
       </section>
     </div>
   );
 }
+
 export default TestForm;

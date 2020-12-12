@@ -9,9 +9,7 @@ const Singup = () => {
   const [apellido, setapellido] = useState(null);
   const [dni, setdni] = useState(null);
 
- 
   const uploadFiedls = () => {
-
     if (!(nombre && apellido && dni)) {
       M.toast({ html: "Debe ingresar todos los datos", classes: "#c62828 red darken-3" });
     } else {
@@ -28,9 +26,9 @@ const Singup = () => {
       })
         .then((res) => {
           console.log(res)
-          if(! res.ok){
+          if (!res.ok) {
             M.toast({ html: "Datos invalidos o el usuario ya existe", classes: "#c62828 red darken-3" });
-          }else{
+          } else {
             M.toast({
               html: "Usuario creado exitosamente",
               classes: "#388e3c green darken-2",
@@ -43,15 +41,15 @@ const Singup = () => {
         });
     }
   };
+
   const PostData = () => {
-      uploadFiedls();
+    uploadFiedls();
   };
 
   return (
     <div className="mycard">
-      <div id="fondoTarjetaLogin"  className="card auth-card input-field">
-         <img alt='logo' className="logo-login" src={logo}/>
-
+      <div id="fondoTarjetaLogin" className="card auth-card input-field">
+        <img alt='logo' className="logo-login" src={logo} />
         <input
           type="text"
           placeholder="Intruduzca su nombre"
@@ -74,7 +72,7 @@ const Singup = () => {
           onChange={(e) => setdni(e.target.value)}
         />
         <button
-         id="botonLogin"
+          id="botonLogin"
           className="btn waves-effect waves-light #64b5f6 red darken-1"
           onClick={() => PostData()}
         >

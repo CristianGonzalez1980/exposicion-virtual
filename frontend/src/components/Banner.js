@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Slider, Slide, Caption } from 'react-materialize'
+import "../styles/Banner.css";
 
 const Banner = () => {
   const [banners, setbanners] = useState(null)
@@ -16,8 +17,6 @@ const Banner = () => {
           }
         })
         .then((result) => {
-          //console.log(result)
-
           setbanners(result)
         })
         .catch((err => {
@@ -30,7 +29,7 @@ const Banner = () => {
     if (banners) {
       const list = banners.map((banner) => {
         return (
-          <Slide image={<img alt="" src={banner.image} />}>
+          <Slide image={<img alt="" id="bannerHome" src={banner.image} />}>
             <Caption placement="center">
             </Caption>
           </Slide>
@@ -42,7 +41,6 @@ const Banner = () => {
   }
 
   return (
-
     <Slider
       fullscreen={false}
       options={{
@@ -54,7 +52,6 @@ const Banner = () => {
     >
       {getBanners()}
     </Slider>
-
   );
 };
 ;

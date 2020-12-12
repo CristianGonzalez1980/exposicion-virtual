@@ -43,8 +43,6 @@ const Footer = () => {
                   <div className="col" id="iconFooter"><i className="material-icons">email</i></div>
                   <div className="col" id="wpFooter"><p>eventos@guiadelarte.com.ar</p></div>
                 </div>
-
-
               </li>
             </ul>
           </div>
@@ -66,14 +64,14 @@ const Footer = () => {
           </div>
             <div className='col s12'>
               <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
-                <a href="https://api.whatsapp.com/send?phone=5491123869642&text=Hola!" class="float" target="_blank">
-                  <i class="fa fa-whatsapp my-float"></i>
-                </a>
+              <a href="https://api.whatsapp.com/send?phone=5491123869642&text=Hola!" class="float" target="_blank">
+                <i class="fa fa-whatsapp my-float"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
-  </footer>
+    </footer>
   );
 };
 

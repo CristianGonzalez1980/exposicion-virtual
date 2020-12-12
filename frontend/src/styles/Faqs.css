@@ -36,11 +36,15 @@
 }
 
 #correo1 {
-  margin-left: 200%;
+  margin-left: 12rem;
   margin-top: 30%;
 }
 #correo2 {
-  margin-left: 250%;
-  margin-top: 50%;
-  height: 78px;
+  margin-left: 20rem;
+  margin-top: 70%;
+  height: 70px;
 }
+
+.mt-4{
+  margin-top: 200px;
+ }

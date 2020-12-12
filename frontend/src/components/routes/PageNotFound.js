@@ -1,9 +1,8 @@
 import React from 'react'
 import '../../styles/PaginaNoEncontrada.css'
 
-
-const PageNotFound = () =>{
-    return(
+const PageNotFound = () => {
+    return (
         <div className="row">
             <div className='col s12'>
                 <i className="small material-icons left" id="exclamation-triangle">not_interested</i>
@@ -19,9 +18,7 @@ const PageNotFound = () =>{
                 </div>
             </div>
         </div>
-            )
-
+    )
 }
-
 
 export default PageNotFound;
