@@ -3,6 +3,7 @@ import '../../styles/DeleteProveedor.css'
 import { Link } from 'react-router-dom'
 import ListOfProductToDelete from './ListOfProductToDelete'
 import AdminOptions from '../AdminOptions';
+import CardProviderwFx from './CardProviderwFx';
 
 const DeleteProducto = () => {
   const [companies, setCompanies] = useState(null)
@@ -29,6 +30,10 @@ const DeleteProducto = () => {
     }
   }, [search])
 
+  const deleteProduct = (company) => {
+    setClicked(<ListOfProductToDelete company={company} />)
+  }
+
   const filterCompanies = () => {
     let mycompanies = []
     companies.forEach(element => {
@@ -36,67 +41,13 @@ const DeleteProducto = () => {
         mycompanies.push(element)
       }
     });
-
-    const list = mycompanies.map((company) => {
-      return (
-        <li>
-          <div className="col s1" id='colCard'>
-            <div className="card" id='cardDeleteProveedor'>
-              <div className="card-image">
-                <img src={company.companyImage} />
-                <span className="card-title">{company.companyName}</span>
-                <a onClick={() => setClicked(<ListOfProductToDelete company={company} />)}
-                  className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">delete</i></a>
-              </div>
-              <div className="card-content">
-                <a href={"http://" + company.facebook} target="_blank"><p>Facebook</p></a>
-                <a href={"http://" + company.instagram} target="_blank"><p>Instagram</p></a>
-                <a href={"http://" + company.web} target="_blank"><p>Web</p></a>
-              </div>
-            </div>
-          </div>
-        </li>
-      )
-    })
-    return (
-      <ul>
-        <div className='row'>
-          {list}
-        </div>
-      </ul>
-    )
+    return (<CardProviderwFx cp={mycompanies} fx={deleteProduct} icon='delete' />)
   }
 
   const listOfCompanies = () => {
     if (companies) {
-      const list = companies.map((company) => {
-        return (
-          <li>
-            <div className="col s1" id='colCard'>
-              <div className="card" id='cardDeletePoveedor'>
-                <div className="card-image">
-                  <img src={company.companyImage} />
-                  <a onClick={() => setClicked(<ListOfProductToDelete company={company} />)} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">delete</i></a>
-                </div>
-                <div className="card-content">
-                  <a href={"http://" + company.facebook} target="_blank"><p>Facebook</p></a>
-                  <a href={"http://" + company.instagram} target="_blank"><p>Instagram</p></a>
-                  <a href={"http://" + company.web} target="_blank"><p>Web</p></a>
-                </div>
-              </div>
-            </div>
-          </li>
-        )
-      })
-      return (
-        <ul>
-          <div className='row'>
-            {list}
-          </div>
-        </ul>
-      )
+      return (<CardProviderwFx cp={companies} fx={deleteProduct} icon='delete' />)
     }
-
   }
   console.log(clicked)
   return (

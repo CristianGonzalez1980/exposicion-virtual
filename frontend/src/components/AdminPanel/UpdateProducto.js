@@ -33,6 +33,7 @@ const UpdateProducto = () => {
   const updateProduct = (company) => {
     setClicked(<ListOfProductToUpdate company={company} />)
   }
+  
   const filterCompanies = () => {
     let mycompanies = []
     companies.forEach(element => {
