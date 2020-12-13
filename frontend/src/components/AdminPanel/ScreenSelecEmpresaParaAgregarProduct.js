@@ -101,12 +101,12 @@ const ScreenSelecEmpresaParaAgregarProduct = () => {
           cliked
           :
           <div className="row">
-            <div className="col s10" id="formimputSearch">
+            <div className="col s11" id="formimputSearch">
               <form className="form-inline">
                 <input onChange={(e) => setsearch(e.target.value)} value={search} className="form-control sm-2" id='inputSearchFormAdmin' type="search" placeholder="Buscar" aria-label="Search" />
               </form>
             </div>
-            <div className='col s2'>
+            <div className='col s1'>
 
               <i className="small material-icons left" id="iconSearchFormAdmin">search</i>
             </div>

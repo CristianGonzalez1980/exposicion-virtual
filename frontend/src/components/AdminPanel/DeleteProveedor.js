@@ -3,6 +3,7 @@ import '../../styles/DeleteProveedor.css'
 import { Link, useHistory } from 'react-router-dom'
 import M from 'materialize-css'
 import AdminOptions from "../AdminOptions";
+import CardProviderwFx from './CardProviderwFx';
 
 const DeleteProveedor = () => {
   const history = useHistory()
@@ -49,68 +50,12 @@ const DeleteProveedor = () => {
         mycompanies.push(element)
       }
     });
-
-    const list = mycompanies.map((company) => {
-      return (
-        <li>
-          <div className="col s1" id='colCard'>
-            <div className="card" id='cardDeleteProducto'>
-              <div className="card-image">
-                <img src={company.companyImage} />
-                <span className="card-title">{company.companyName}</span>
-                <a onClick={() => {
-                  deleteCompany(company.id)
-                }} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">delete</i></a>
-              </div>
-              <div className="card-content">
-                <a href={"http://" + company.facebook} target="_blank"><p>Facebook</p></a>
-                <a href={"http://" + company.instagram} target="_blank"><p>Instagram</p></a>
-                <a href={"http://" + company.web} target="_blank"><p>Web</p></a>
-              </div>
-            </div>
-          </div>
-        </li>
-      )
-    })
-    return (
-      <ul>
-        <div className='row'>
-          {list}
-        </div>
-      </ul>
-    )
+    return (<CardProviderwFx cp={mycompanies} fx={deleteCompany} />)
   }
 
   const listOfCompanies = () => {
     if (companies) {
-      const list = companies.map((company) => {
-        return (
-          <li>
-            <div className="col s1" id='colCard'>
-              <div className="card" id='cardDeleteProveedor'>
-                <div className="card-image">
-                  <img src={company.companyImage} />
-                  <a onClick={() => {
-                    deleteCompany(company.id)
-                  }} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">delete</i></a>
-                </div>
-                <div className="card-content">
-                  <a href={"http://" + company.facebook} target="_blank"><p>Facebook</p></a>
-                  <a href={"http://" + company.instagram} target="_blank"><p>Instagram</p></a>
-                  <a href={"http://" + company.web} target="_blank"><p>Web</p></a>
-                </div>
-              </div>
-            </div>
-          </li>
-        )
-      })
-      return (
-        <ul>
-          <div className='row'>
-            {list}
-          </div>
-        </ul>
-      )
+      return (<CardProviderwFx cp={companies} fx={deleteCompany} />)
     }
   }
 
@@ -119,12 +64,12 @@ const DeleteProveedor = () => {
       <AdminOptions />
       <div className='col s8'>
         <div className="row">
-          <div className="col s10" id="formimputSearch">
+          <div className="col s11" id="formimputSearch">
             <form className="form-inline">
               <input onChange={(e) => setsearch(e.target.value)} value={search} className="form-control sm-2" id='inputSearchFormAdmin' type="search" placeholder="Buscar" aria-label="Search" />
             </form>
           </div>
-          <div className='col s2'>
+          <div className='col s1'>
             <Link>
               <i className="small material-icons left" id="iconSearchFormAdmin">search</i>
             </Link>

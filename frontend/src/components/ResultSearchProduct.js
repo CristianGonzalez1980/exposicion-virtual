@@ -33,14 +33,11 @@ const ResultSearchProduct = (props) => {
                 <a href="#" onClick={() => ordenarPrecioAsc()}> Precio Ascendente  </a>
                 <a href="#" onClick={() => ordenarPrecioDesc()}> Precio Descendente  </a>
                 <Divider />
-                <a href="#" onClick={() => ordenarPromocionAsc()}> Mayor descuento </a>
-                <a href="#" onClick={() => ordenarPromocionDesc()}> Menor descuento </a>
-                <Divider />
                 <a href="#" onClick={() => ordenarAlfabeticamenteAsc()}> Alfabeticamente Ascendente</a>
                 <a href="#" onClick={() => ordenarAlfabeticamenteDesc()}>Alfabeticamente Descendente</a>
                 <Divider />
+                <a href="#" onClick={() => ordenarPromocionAsc()}> Mayor descuento </a>
                 <a href="#" onClick={() => ordenarMasVendidos()}> Más vendidos</a>
-                <a href="#" onClick={() => ordenarMenosVendidos()}>Menos vendidos</a>
             </Dropdown>
         )
     }
@@ -57,11 +54,6 @@ const ResultSearchProduct = (props) => {
 
     const ordenarPromocionAsc = () => {
         const list = products.sort((a, b) => parseFloat(a.promotionalPrice) - parseFloat(b.promotionalPrice));
-        setOrderProduct(list)
-    }
-
-    const ordenarPromocionDesc = () => {
-        const list = products.sort((a, b) => parseFloat(b.promotionalPrice) - parseFloat(a.promotionalPrice));
         setOrderProduct(list)
     }
 
@@ -85,11 +77,6 @@ const ResultSearchProduct = (props) => {
 
     const ordenarMasVendidos = () => {
         const list = products.sort((a, b) => parseFloat(b.vendidos) - parseFloat(a.vendidos));
-        setOrderProduct(list)
-    }
-
-    const ordenarMenosVendidos = () => {
-        const list = products.sort((a, b) => parseFloat(a.vendidos) - parseFloat(b.vendidos));
         setOrderProduct(list)
     }
 
