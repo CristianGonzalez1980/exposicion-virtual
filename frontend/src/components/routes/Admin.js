@@ -2,6 +2,7 @@ import React from "react";
 import M from 'materialize-css'
 import '../AdminOptions.js'
 import AdminOptions from "../AdminOptions.js";
+import "../../styles/Admin.css";
 
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.collapsible');

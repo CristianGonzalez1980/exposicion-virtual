@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer">
-        <div className="container" id="contFooter">
+        <div className="containerF" id="contFooter">
           <div className="row">
             <div className="col s3"><a href='https://www.facebook.com/guiadelartedigital'><SocialIcon className="SocialIcon" network="facebook" bgColor="#ffffff" /></a></div>
             <div className="col s3"><a href='http://instagram.com/guiadelartedigital'><SocialIcon className="SocialIcon" network="instagram" bgColor="#ffffff" /></a></div>

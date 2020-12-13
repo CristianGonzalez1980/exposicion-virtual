@@ -26,10 +26,12 @@
     font-weight: bold;
 }
 
-.red.lighten-2 {
+#contactBoton {
     background-color:#cb1f30 !important;
     color: white;
-   }
+    width: 50%;
+    margin-left: 25%;
+}
 
 .payment-form a,
 .payment-form a:not([href]) {
@@ -51,5 +53,5 @@
 
 .container{
     margin-top: 200px;
-    width: 50%;
+    width: 60%;
 }
