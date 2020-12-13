@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../../styles/UpdatProveedor.css'
 import AddProduct from './AddProducto'
 import AdminOptions from '../AdminOptions';
+import CardProviderwFx from './CardProviderwFx';
 
 const ScreenSelecEmpresaParaAgregarProduct = () => {
   const [companies, setCompanies] = useState([])
@@ -26,6 +27,9 @@ const ScreenSelecEmpresaParaAgregarProduct = () => {
       }))
   }, [search, cliked])
 
+  const addProductToCompany = (company) => {
+    setClicked(<AddProduct company={company} />)
+  }
   const filterCompanies = () => {
     let mycompanies = []
     companies.forEach(element => {
@@ -33,66 +37,15 @@ const ScreenSelecEmpresaParaAgregarProduct = () => {
         mycompanies.push(element)
       }
     });
-
-    const list = mycompanies.map((company) => {
-      return (
-        <li>
-          <div className="col s1" id='colCard'>
-            <div className="card" id='cardDeleteProveedor'>
-              <div className="card-image">
-                <img src={company.companyImage} />
-                <span className="card-title">{company.companyName}</span>
-                <a onClick={() => setClicked(<AddProduct company={company} />)} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">mode_edit</i></a>
-              </div>
-              <div className="card-content">
-                <a href={"http://" + company.facebook} target="_blank"><p>Facebook</p></a>
-                <a href={"http://" + company.instagram} target="_blank"><p>Instagram</p></a>
-                <a href={"http://" + company.web} target="_blank"><p>Web</p></a>
-              </div>
-            </div>
-          </div>
-        </li>
-      )
-    })
-    return (
-      <ul>
-        <div className='row'>
-          {list}
-        </div>
-      </ul>
-    )
+    return (<CardProviderwFx cp={mycompanies} fx={addProductToCompany} icon='add_business' />)
   }
 
   const listOfCompanies = () => {
     if (companies) {
-      const list = companies.map((company) => {
-        return (
-          <li>
-            <div className="col s1" id='colCard'>
-              <div className="card" id='cardDeleteProveedor'>
-                <div className="card-image">
-                  <img src={company.companyImage} />
-                  <a onClick={() => setClicked(<AddProduct company={company} />)} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">mode_edit</i></a>
-                </div>
-                <div className="card-content">
-                  <a href={company.facebook}><p>Facebook</p></a>
-                  <a href={company.instagram}><p>Instagram</p></a>
-                  <a href={company.web}><p>Web</p></a>
-                </div>
-              </div>
-            </div>
-          </li>
-        )
-      })
-      return (
-        <ul>
-          <div className='row'>
-            {list}
-          </div>
-        </ul>
-      )
+      return (<CardProviderwFx cp={companies} fx={addProductToCompany} icon='add_business' />)
     }
   }
+
   return (
     <div className="row">
       <AdminOptions />
