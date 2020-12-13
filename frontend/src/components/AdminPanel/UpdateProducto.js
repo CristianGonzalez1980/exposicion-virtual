@@ -3,6 +3,7 @@ import '../../styles/DeleteProveedor.css'
 import { Link } from 'react-router-dom'
 import ListOfProductToUpdate from './ListOfProductToUpdate'
 import AdminOptions from '../AdminOptions'
+import CardProviderwFx from './CardProviderwFx';
 
 const UpdateProducto = () => {
   const [companies, setCompanies] = useState(null)
@@ -29,6 +30,9 @@ const UpdateProducto = () => {
     }
   }, [search])
 
+  const updateProduct = (company) => {
+    setClicked(<ListOfProductToUpdate company={company} />)
+  }
   const filterCompanies = () => {
     let mycompanies = []
     companies.forEach(element => {
@@ -36,64 +40,12 @@ const UpdateProducto = () => {
         mycompanies.push(element)
       }
     });
-
-    const list = mycompanies.map((company) => {
-      return (
-        <li>
-          <div className="col s1" id='colCard'>
-            <div className="card" id='cardDeleteProveedor'>
-              <div className="card-image">
-                <img src={company.companyImage} />
-                <span className="card-title">{company.companyName}</span>
-                <a onClick={() => setClicked(<ListOfProductToUpdate company={company} />)} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">edit</i></a>
-              </div>
-              <div className="card-content">
-                <a href={"http://" + company.facebook} target="_blank"><p>Facebook</p></a>
-                <a href={"http://" + company.instagram} target="_blank"><p>Instagram</p></a>
-                <a href={"http://" + company.web} target="_blank"><p>Web</p></a>
-              </div>
-            </div>
-          </div>
-        </li>
-      )
-    })
-    return (
-      <ul>
-        <div className='row'>
-          {list}
-        </div>
-      </ul>
-    )
+    return (<CardProviderwFx cp={mycompanies} fx={updateProduct} icon='mode_edit' />)
   }
 
   const listOfCompanies = () => {
     if (companies) {
-      const list = companies.map((company) => {
-        return (
-          <li>
-            <div className="col s1" id='colCard'>
-              <div className="card" id='cardDeleteProveedor'>
-                <div className="card-image">
-                  <img src={company.companyImage} />
-                  <a onClick={() => setClicked(<ListOfProductToUpdate company={company} />)} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">edit</i></a>
-                </div>
-                <div className="card-content">
-                  <a href={"http://" + company.facebook} target="_blank"><p>Facebook</p></a>
-                  <a href={"http://" + company.instagram} target="_blank"><p>Instagram</p></a>
-                  <a href={"http://" + company.web} target="_blank"><p>Web</p></a>
-                </div>
-              </div>
-            </div>
-          </li>
-        )
-      })
-      return (
-        <ul>
-          <div className='row'>
-            {list}
-          </div>
-        </ul>
-      )
+      return (<CardProviderwFx cp={companies} fx={updateProduct} icon='mode_edit' />)
     }
   }
   console.log(clicked)
