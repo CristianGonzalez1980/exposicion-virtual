@@ -3,7 +3,7 @@
 
 body {
   background-color: #e8ece2;
-  background-image: url("../images/imagenBackground.jpg");
+  background-image: url("../images/backgroundChristmasTime.jpg");
 }
 #exclamation-triangle {
   color: rgb(255, 0, 0);
@@ -14,12 +14,11 @@ body {
 }
 .numero {
   font-family: "Lemonada", cursive;
-  color: #fff;
-  font-size: 15rem;
-  margin-top: 8rem;
-  text-shadow: 3px 3px #272634;
-  margin-left: 27rem;
+  color: rgb(245, 58, 58);
+  font-size: 4rem;
+  text-shadow: 2px 2px hsl(115, 100%, 20%);
 }
+
 .leyenda {
   font-family: "Caveat", cursive;
   color: #504b4b;
