@@ -28,7 +28,8 @@ const DeleteProveedor = () => {
       }))
   }, [search])
 
-  const deleteCompany = (id) => {
+  const deleteCompany = (provider) => {
+    var id = provider.id
     fetch(`http://localhost:7000/companies/${id}`, {
       method: 'DELETE',
       headers: {
@@ -50,12 +51,12 @@ const DeleteProveedor = () => {
         mycompanies.push(element)
       }
     });
-    return (<CardProviderwFx cp={mycompanies} fx={deleteCompany} />)
+    return (<CardProviderwFx cp={mycompanies} fx={deleteCompany} icon='delete' />)
   }
 
   const listOfCompanies = () => {
     if (companies) {
-      return (<CardProviderwFx cp={companies} fx={deleteCompany} />)
+      return (<CardProviderwFx cp={companies} fx={deleteCompany} icon='delete' />)
     }
   }
 
