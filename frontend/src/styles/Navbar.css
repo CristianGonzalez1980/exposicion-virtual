@@ -20,6 +20,10 @@ nav {
   line-height:56px
  }
 
+.row {
+  margin-bottom: 10px;
+}
+
 #inputSearch {
   margin-top: 40px;
 }

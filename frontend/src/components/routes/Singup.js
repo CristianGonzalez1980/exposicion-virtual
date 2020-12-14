@@ -3,6 +3,7 @@ import "../../styles/Singin.css";
 import { Link, useHistory } from "react-router-dom";
 import M from "materialize-css";
 import logo from "../../images/logo.png"
+
 const Singup = () => {
   const history = useHistory();
   const [nombre, setnombre] = useState(null);
