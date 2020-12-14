@@ -4,11 +4,11 @@ import '../../styles/PaginaNoEncontrada.css'
 const PageNotFound = () => {
     return (
         <div className="row">
-            <div className='col s12'>
-                <i className="small material-icons left" id="exclamation-triangle">not_interested</i>
+            <div className='col s12' id="exclamation-triangle">
+                <i className="large material-icons">not_interested</i>
             </div>
             <div className='col s12'>
-                <div class="numero">
+                <div className="numero2">
                     404
                 </div>
             </div>

@@ -42,7 +42,6 @@ const ProductCard = (props) => {
                 <p>Stock: {product.stock}</p>
                 <p>Precio: {product.itemPrice}</p>
                 <p>Precio promocional: {product.promotionalPrice}</p>
-                <p>Vendidos: {product.vendidos}</p>
               </div>
               <div className="card-action" id="cardAction">
                 {product.stock === 0 ?
