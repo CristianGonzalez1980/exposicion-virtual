@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
 import AdminOptions from '../AdminOptions';
+import BannerCategories from '../BannerCategories';
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.autocomplete');
@@ -97,19 +98,7 @@ const AddBanner = () => {
       <div className='col s8'>
         <div class="row" onLoad={loadCategories}>
           <form class="col s12" id="bannerform">
-            <div class="row">
-              <div class="input-field col s12">
-                <select id="Category" form="bannerform" type="text" onChange={(e) => setcategory(e.target.value)} class="validate" value={category}>
-                  <option>Seleccione una categoría...</option>
-                  <option value="HOME">Inicio</option>
-                  <option value="SCHEDULE">Calendario de clases</option>
-                  <option value="CLASS">Clase en vivo</option>
-                  <option value="COURRIER">Correo</option>
-                  <option value="PAYMENTMETHODS">Metodos de pago</option>
-                </select>
-                <label class="active" htmlFor="Category">Categoría</label>
-              </div>
-            </div>
+            <BannerCategories val={category} fx={setcategory} />
             <form action="#">
               <div class="file-field input-field">
                 <div class="btn" id='buttonUploadImages'>
@@ -139,6 +128,5 @@ const AddBanner = () => {
     </div>
   );
 };
-
 
 export default AddBanner;

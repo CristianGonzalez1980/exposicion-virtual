@@ -3,6 +3,7 @@ import '../../styles/DeleteBanner.css'
 import { Link, useHistory } from 'react-router-dom'
 import M from 'materialize-css'
 import AdminOptions from '../AdminOptions';
+import BannerCategories from '../BannerCategories';
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('select');
@@ -86,19 +87,7 @@ const DeleteBanner = () => {
               :
               <div className="row">
                 <form className="col s12" id="bannerform">
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <select className="input-field" id="Category" form="bannerform" type="text" onChange={(e) => setcategory(e.target.value)} className="validate" value={category}>
-                        <option value={null}>Seleccione una categoría...</option>
-                        <option value="HOME">Inicio</option>
-                        <option value="SCHEDULE">Calendario de clases</option>
-                        <option value="CLASS">Clase en vivo</option>
-                        <option value="COURRIER">Correo</option>
-                        <option value="PAYMENTMETHODS">Metodos de pago</option>
-                      </select>
-                      <label className="active" htmlFor="Category">Categoría</label>
-                    </div>
-                  </div>
+                  <BannerCategories val={category} fx={setcategory} />
                 </form>
                 {listOfBanners(category)}
               </div>
