@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../styles/DeleteProveedor.css'
 
-const Card = (props) => {
+const ProviderCard = (props) => {
 
   console.log(props)
   var provider = props.cp
@@ -10,7 +10,7 @@ const Card = (props) => {
 
   return (
     <div className="col s1" id='colCard'>
-      <div className="card" id='cardDeleteProveedor'>
+      <div className="card" id='cardViewProveedor_Product'>
         <div className="card-image">
           <img src={provider.companyImage} alt={provider.companyName} />
           <a onClick={() => { funcionD(provider) }} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">{iconFx}</i></a>
@@ -25,4 +25,4 @@ const Card = (props) => {
   )
 }
 
-export default Card;
+export default ProviderCard;

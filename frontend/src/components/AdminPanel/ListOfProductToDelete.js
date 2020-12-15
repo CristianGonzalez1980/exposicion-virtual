@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import M from 'materialize-css'
 import AdminProductSearchBar from '../AdminProductSearchBar'
+import CardProductwFx from './CardProductwFx';
 
 const ListOfProductToDelete = (props) => {
   const company = props.company
@@ -47,39 +48,14 @@ const ListOfProductToDelete = (props) => {
       })
   }
 
+  const doDeleteProduct = (products, product) => {
+    setprevProducts(products)
+    deleteProduct(product.id)
+  }
+
   const listOfProducts = () => {
     if (products) {
-      const list = products.map((product) => {
-        return (
-          <li>
-            <div className="col s1" id='colCard'>
-              <div className="card" id='cardDeleteProducto'>
-                <div className="card-image">
-                  <img src={product.images[0]} />
-                  <a onClick={() => {
-                    setprevProducts(products)
-                    deleteProduct(product.id)
-                  }} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">delete</i></a>
-                </div>
-                <div className="card-content">
-                  <strong><p> {product.itemName}</p></strong>
-                  <hr />
-                  <p > stock : {product.stock} </p>
-                  <p > precio : {product.itemPrice} </p>
-                  <p > precio Promocional : {product.promotionalPrice} </p>
-                </div>
-              </div>
-            </div>
-          </li>
-        )
-      })
-      return (
-        <ul>
-          <div className='row'>
-            {list}
-          </div>
-        </ul>
-      )
+      return (<CardProductwFx prs={products} fx={doDeleteProduct} icon='delete' />)
     }
   }
 

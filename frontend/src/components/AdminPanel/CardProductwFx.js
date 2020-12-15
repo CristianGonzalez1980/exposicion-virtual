@@ -1,16 +1,16 @@
 import React from 'react'
-import ProviderCard from './ProviderCard';
+import ProductCard from './ProductCard';
 
-const CardProviderwFx = (props) => {
+const CardProductwFx = (props) => {
 
-    var companies = props.cp 
+    var products = props.prs
     var funcionD = props.fx
     var iconFx = props.icon
 
-    const list = companies.map((company) => {
+    const list = products.map((product) => {
         return (
             <li>
-                <ProviderCard cp={company} fx={funcionD} icon={iconFx} />
+                <ProductCard prs={products} pr={product} fx={funcionD} icon={iconFx} />
             </li>
         )
     })
@@ -24,4 +24,4 @@ const CardProviderwFx = (props) => {
     )
 }
 
-export default CardProviderwFx;
+export default CardProductwFx;

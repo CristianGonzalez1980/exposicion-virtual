@@ -3,6 +3,7 @@ import M from 'materialize-css'
 import UpdateProductoForm from './UpdateProductoForm'
 import '../../styles/ListOfProductToUpdate.css'
 import AdminProductSearchBar from '../AdminProductSearchBar'
+import CardProductwFx from './CardProductwFx';
 
 const ListOfProductToUpdate = (props) => {
   const company = props.company
@@ -30,38 +31,13 @@ const ListOfProductToUpdate = (props) => {
     }
   }, [products])
 
+  const doUpdateProduct = (products, product) => {
+    setCliked(<UpdateProductoForm product={product} />)
+  }
+
   const listOfProducts = () => {
     if (products) {
-      const list = products.map((product) => {
-        return (
-          <li>
-            <div className="col s1" id='colCard'>
-              <div className="card" id='cardDeleteProducto'>
-                <div className="card-image">
-                  <img src={product.images[0]} />
-                  <a onClick={() => {
-                    setCliked(<UpdateProductoForm product={product} />)
-                  }} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">edit</i></a>
-                </div>
-                <div className="card-content">
-                  <strong><p> {product.itemName}</p></strong>
-                  <hr />
-                  <p > stock : {product.stock} </p>
-                  <p > precio : {product.itemPrice} </p>
-                  <p > precio Promocional : {product.promotionalPrice} </p>
-                </div>
-              </div>
-            </div>
-          </li>
-        )
-      })
-      return (
-        <ul>
-          <div className='row'>
-            {list}
-          </div>
-        </ul>
-      )
+      return (<CardProductwFx prs={products} fx={doUpdateProduct} icon='edit' />)
     }
   }
   return (
