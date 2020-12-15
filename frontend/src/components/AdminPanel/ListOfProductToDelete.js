@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import M from 'materialize-css'
+import AdminProductSearchBar from '../AdminProductSearchBar'
 
 const ListOfProductToDelete = (props) => {
   const company = props.company
@@ -84,16 +85,7 @@ const ListOfProductToDelete = (props) => {
 
   return (
     <div className="row">
-      <div className="col s11" id="formimputSearch">
-        <form className="form-inline">
-          <input className="form-control sm-2" id='inputSearchFormAdmin' type="search" placeholder="Buscar" aria-label="Search" />
-        </form>
-      </div>
-      <div className='col s1'>
-        <Link>
-          <i className="small material-icons left" id="iconSearchFormAdmin">search</i>
-        </Link>
-      </div>
+      <AdminProductSearchBar />
       <div>
         {
           !products ?

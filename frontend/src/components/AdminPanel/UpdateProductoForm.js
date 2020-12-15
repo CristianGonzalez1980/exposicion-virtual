@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/DeleteBanner.css'
 

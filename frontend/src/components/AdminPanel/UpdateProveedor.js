@@ -3,6 +3,7 @@ import '../../styles/UpdatProveedor.css'
 import UpdateProveedorForm from './UpdateProveedorForm'
 import AdminOptions from '../AdminOptions';
 import CardProviderwFx from './CardProviderwFx';
+import AdminProveedorSearchBar from '../AdminProveedorSearchBar';
 
 const UpdateProveedor = () => {
   const [companies, setCompanies] = useState([])
@@ -55,14 +56,7 @@ const UpdateProveedor = () => {
           cliked
           :
           <div className="row">
-            <div className="col s11" id="formimputSearch">
-              <form className="form-inline">
-                <input onChange={(e) => setsearch(e.target.value)} value={search} className="form-control sm-2" id='inputSearchFormAdmin' type="search" placeholder="Buscar" aria-label="Search" />
-              </form>
-            </div>
-            <div className='col s1'>
-              <i className="small material-icons left" id="iconSearchFormAdmin">search</i>
-            </div>
+            <AdminProveedorSearchBar fx={setsearch} val={search} />
             <div>
               {
                 !companies ?

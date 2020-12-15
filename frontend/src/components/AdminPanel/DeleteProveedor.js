@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/DeleteProveedor.css'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from "react-router-dom"
 import M from 'materialize-css'
 import AdminOptions from "../AdminOptions";
 import CardProviderwFx from './CardProviderwFx';
+import AdminProveedorSearchBar from '../AdminProveedorSearchBar';
 
 const DeleteProveedor = () => {
   const history = useHistory()
@@ -65,16 +66,7 @@ const DeleteProveedor = () => {
       <AdminOptions />
       <div className='col s8'>
         <div className="row">
-          <div className="col s11" id="formimputSearch">
-            <form className="form-inline">
-              <input onChange={(e) => setsearch(e.target.value)} value={search} className="form-control sm-2" id='inputSearchFormAdmin' type="search" placeholder="Buscar" aria-label="Search" />
-            </form>
-          </div>
-          <div className='col s1'>
-            <Link>
-              <i className="small material-icons left" id="iconSearchFormAdmin">search</i>
-            </Link>
-          </div>
+          <AdminProveedorSearchBar fx={setsearch} val={search} />
           <div>
             {
               !companies ?
