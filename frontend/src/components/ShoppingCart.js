@@ -3,6 +3,7 @@ import { Row } from 'react-materialize'
 import { Link } from 'react-router-dom'
 import '../styles/ShoppingCart.css'
 import ShopContext from './context/shop-context'
+import CourrierCard from './CourrierCard';
 
 export var sendMethodCostTopLevel = null
 export var sendMethodNameTopLevel = null
@@ -42,6 +43,8 @@ const ShoppingCart = () => {
   const [codigoPostal, setCodigoPostal] = useState(null)
   const [sendMethodName, setSendMethodName] = useState(null)
   const [sendMethodCost, setSendMethodCost] = useState(null)
+  const [courrierOptionsList, setCourrierOptionsList] = useState([])
+  const [courrierViewList, setCourrierViewList] = useState(null)
 
   function calcularEnvio() {
     if (codigoPostal >= 1000 && codigoPostal <= 9999) {
@@ -59,13 +62,17 @@ const ShoppingCart = () => {
           }
         })
         .then((response) => {
-          let option = response.options.find(option => option.shipping_method_id === 503045)
-          sendMethodNameTopLevel = option.name
-          setSendMethodName(option.name)
-          sendMethodCostTopLevel = option.cost
-          setSendMethodCost(option.cost)
-          console.log(option.name)
-          console.log(option.cost)
+          let options = response
+          setCourrierOptionsList(options.options)
+          setCourrierViewList(courrierOptions())
+          /*  let option = options.options.find(option => option.shipping_method_id === 503045)
+            sendMethodNameTopLevel = option.name
+            setSendMethodName(option.name)
+            sendMethodCostTopLevel = option.cost
+            setSendMethodCost(option.cost)
+            console.log(option.name)
+            console.log(option.cost)*/
+          console.log(options.options)
         })
         .catch((err => {
           sendMethodNameTopLevel = "No se pudo calcular el envio."
@@ -84,6 +91,34 @@ const ShoppingCart = () => {
     } else {
       return sendMethodCost
     }
+  }
+
+  const courrierOptions = () => {
+
+    const courrierItemList = () => {
+      const list = courrierOptionsList.map((courrier) => {
+        return (
+          <p>
+            <CourrierCard name={courrier.name} cost={courrier.cost} />
+          </p>
+        )
+      })
+      return (
+        <form action="#" id="currieroption">
+          {console.log(list)}
+          {list}
+          <p id="currieroption">
+            <label>
+              <input name="style2" type="radio" id="currieroption" onClick={() => { setSendMethodName("Se agrega a envío en curso"); setSendMethodCost(0) }} />
+              <span>Si ya realizaste una compra unificá el envío</span>
+            </label>
+          </p>
+        </form>
+      )
+    }
+    return (
+      courrierItemList()
+    )
   }
 
   useEffect(() => {
@@ -162,24 +197,42 @@ const ShoppingCart = () => {
                 <div className="col s6">
                   <h4>
                     <strong>
-                      {sendMethodName}
+                      Opciones de envío: {/*sendMethodName*/}
                     </strong>
                   </h4>
                 </div>
                 <div className="col s6">
-                  <h4>
+                  {/*<h4>
                     <strong>
-                      {(sendMethodCost ? "$ " + sendMethodCost : "")}
+                      (sendMethodCost ? "$ " + sendMethodCost : "")
                     </strong>
-                  </h4>
+                  </h4>*/}
                 </div>
               </div>
               <div className="row centerField">
-                <h3>
+                {/*<h3>
                   <strong>
-                    Precio total: {precioTotalConEnvio()}
+                    {Precio total: {precioTotalConEnvio()}}
                   </strong>
-                </h3>
+                </h3>*/}
+                <div className="col s6">
+                  <h4>
+                    <strong>
+                      Opcion elegida: {sendMethodName}
+                    </strong>
+                  </h4>
+                  <h4>
+                    <strong>
+                      (sendMethodCost ? "$ " + sendMethodCost : "")
+                    </strong>
+                  </h4>
+                  <h4>
+                    <strong>
+                      "Precio total:"+{precioTotalConEnvio()}
+                    </strong>
+                  </h4>
+                </div>
+                <div>{courrierViewList}</div>
                 <div className="col s6 offset-s6">
                   {sendMethodCost === "No definido." ?
                     <button disabled={true} className="waves-effect waves-light btn">

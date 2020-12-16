@@ -1,8 +1,6 @@
 .a {
   color: aliceblue;
 }
-#footerT {
-}
 
 #contFooter {
   width: 100%;
@@ -31,21 +29,23 @@
 
 .float{
 	position:fixed;
-	width:60px;
-	height:60px;
+  width: 45px;
+  height: 45px;
+  padding: 5px 10px;
 	bottom:40px;
 	right:40px;
-	background-color:#25d366;
+	background-color:#4dc247;
 	color:#FFF;
-	border-radius:50px;
-	text-align:center;
+  border-radius:50px;
+  vertical-align: middle;
+	/*text-align:center;*/
   font-size:30px;
-	box-shadow: 2px 2px 3px #999;
+	box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
   z-index:100;
 }
 
 .my-float{
-	margin-top:16px;
+	margin-bottom: 15px;
 }
 
 .containerF{
