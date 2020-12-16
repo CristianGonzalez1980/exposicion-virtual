@@ -60,7 +60,7 @@ const SliderProducts = () => {
             <React.Fragment>
               <Slide image={<img className="prodImg" alt={product.itemName} src={product.images[0]} />}>
                 <Caption id="prodcaption" placement={placenment[dinamicIndex(index)]}>
-                  <h3>
+                  <h3 id="textSliderProduct">
                     {product.itemName}
                   </h3>
                   <Button onClick={context.addProductToCart.bind(this, product)}>
@@ -73,7 +73,7 @@ const SliderProducts = () => {
         </ShopContext.Consumer>
       )
       return (
-        <Slider
+        <Slider id="indicatorsProducts"
           fullscreen={false}
           options={{
             duration: 500,

@@ -41,7 +41,7 @@ const Banner = () => {
   }
 
   return (
-    <Slider
+    <Slider id="indicatorsHomeBanner"
       fullscreen={false}
       options={{
         duration: 500,

@@ -63,7 +63,6 @@ const AddProveedor = (props) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          //console.log(data);
           setUrlBanner(data.url);
           postear()
         })

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import M from 'materialize-css'
 import UpdateProductoForm from './UpdateProductoForm'
 import '../../styles/ListOfProductToUpdate.css'
 import AdminProductSearchBar from '../AdminProductSearchBar'

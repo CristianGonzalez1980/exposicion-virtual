@@ -328,16 +328,6 @@ const TestForm = () => {
       }))}
     </select>)
   }
-  // function select(){
-  //   return(
-  //     // <select  id="Category" form="bannerform" type="text" class="validate">
-  //     //   {list.map(opt => {
-
-
-
-  //       // })}
-  //     // </select>
-  //   )
 
   return (
     <div>
