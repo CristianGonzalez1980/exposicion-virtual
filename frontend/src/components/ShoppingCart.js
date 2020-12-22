@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Row } from 'react-materialize'
+//import { Row } from 'react-materialize'
 import { Link } from 'react-router-dom'
 import '../styles/ShoppingCart.css'
 import ShopContext from './context/shop-context'
@@ -87,6 +87,8 @@ const ShoppingCart = () => {
 
   function precioTotalConEnvio() {
     if (sendMethodCost !== "No definido.") {
+      sendMethodNameTopLevel = sendMethodName
+      sendMethodCostTopLevel = sendMethodCost
       return sendMethodCost ? "$ " + (precioTotal(context.cart) + sendMethodCost) : ""
     } else {
       return sendMethodCost
@@ -97,9 +99,10 @@ const ShoppingCart = () => {
 
     const courrierItemList = () => {
       const list = courrierOptionsList.map((courrier) => {
+        console.log(courrier.cost)
         return (
           <p>
-            <CourrierCard name={courrier.name} cost={courrier.cost} />
+            <CourrierCard name={courrier.name} cost={courrier.cost} fx={setSendMethodName} fx2={setSendMethodCost} />
           </p>
         )
       })
@@ -109,8 +112,8 @@ const ShoppingCart = () => {
           {list}
           <p id="currieroption">
             <label>
-              <input name="style2" type="radio" id="currieroption" onClick={() => { setSendMethodName("Se agrega a envío en curso"); setSendMethodCost(0) }} />
-              <span>Si ya realizaste una compra unificá el envío</span>
+              <input name="style2" type="radio" id="currieroption" onClick={() => { setSendMethodName("Se agrega a envío en curso"); setSendMethodCost(0.01) }} />
+              <span>Tengo una compra previa pendiente de envío</span>
             </label>
           </p>
         </form>
@@ -179,29 +182,37 @@ const ShoppingCart = () => {
                 </table>
               </div>
               <div className="col s12">
-                <div className="row centerField">
-                  <h4>
-                    <strong>
-                      Precio total (sin envío): $ {precioTotal(context.cart)}
-                    </strong>
-                  </h4>
+                <div className="row rightField">
+                  <div className="col s12">
+                    <h4>
+                      <strong>
+                        Subtotal: $ {precioTotal(context.cart)}
+                      </strong>
+                    </h4>
+                  </div>
                 </div>
               </div>
-              <div className="row centerField">
+              <div className="row centerField ">
                 <div className="col s6 offset-6">
                   <input id="inptCartCant" placeholder="Código Postal" value={codigoPostal} onChange={(e) => setCodigoPostal(e.target.value)} />
                   <a className="waves-effect waves-light btn" onClick={calcularEnvio} style={{ marginLeft: 20 }}>Calcular envío</a>
                 </div>
               </div>
-              <div className="row centerField">
-                <div className="col s6">
-                  <h4>
+              <div className="row leftField">
+                <div className="col s11">
+                  {courrierViewList === null ?
                     <strong>
-                      Opciones de envío: {/*sendMethodName*/}
+
                     </strong>
-                  </h4>
+                    :
+                    <h4>
+                      <strong>
+                        Opciones de envío:
+                    </strong>
+                    </h4>
+                  }
                 </div>
-                <div className="col s6">
+                <div className="col s1">
                   {/*<h4>
                     <strong>
                       (sendMethodCost ? "$ " + sendMethodCost : "")
@@ -209,43 +220,48 @@ const ShoppingCart = () => {
                   </h4>*/}
                 </div>
               </div>
-              <div className="row centerField">
-                {/*<h3>
+              <div className="row leftField">
+                <div className="col s2">
+                </div>
+                <div className="col s8">
+                  <div>{courrierViewList}</div>
+                </div>
+                <div className="col s2">
+                </div>
+              </div>
+              <div className="row rightField">
+                <div className="col s12">
+                  <h3>
+                    {sendMethodCost === null ?
+                      <strong>
+
+                      </strong>
+                      :
+                      <strong>
+                        Precio total: {precioTotalConEnvio()}
+                      </strong>
+                    }
+                  </h3>
+                </div>
+                {sendMethodCost === null ?
                   <strong>
-                    {Precio total: {precioTotalConEnvio()}}
+
                   </strong>
-                </h3>*/}
-                <div className="col s6">
-                  <h4>
-                    <strong>
-                      Opcion elegida: {sendMethodName}
-                    </strong>
-                  </h4>
-                  <h4>
-                    <strong>
-                      (sendMethodCost ? "$ " + sendMethodCost : "")
-                    </strong>
-                  </h4>
-                  <h4>
-                    <strong>
-                      "Precio total:"+{precioTotalConEnvio()}
-                    </strong>
-                  </h4>
-                </div>
-                <div>{courrierViewList}</div>
-                <div className="col s6 offset-s6">
-                  {sendMethodCost === "No definido." ?
-                    <button disabled={true} className="waves-effect waves-light btn">
-                      Revisar envio
+                  :
+                  <div className="col s6 offset-s6">
+                    {sendMethodCost === "No definido." ?
+                      <button disabled={true} className="waves-effect waves-light btn">
+                        Revisar envio
                   </button>
-                    :
-                    <Link to={localStorage.getItem('user') === "admin" || localStorage.getItem('user') === "usuario" ? "/testform" : "/login"}>
-                      <button className="waves-effect waves-light btn">
-                        Comprar
+                      :
+                      <Link to={localStorage.getItem('user') === "admin" || localStorage.getItem('user') === "usuario" ? "/testform" : "/login"}>
+                        <button className="waves-effect waves-light btn">
+                          Comprar
                     </button>
-                    </Link>
-                  }
-                </div>
+                      </Link>
+                    }
+                  </div>
+                }
               </div>
             </div>
           </main>

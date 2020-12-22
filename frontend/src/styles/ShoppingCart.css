@@ -35,6 +35,10 @@ button {
   text-align: center;
 }
 
+.rightField {
+  text-align: right;
+}
+
 td,
 th {
  text-align:center;
