@@ -1,0 +1,135 @@
+import React, { useState } from 'react'
+import { Carousel } from 'react-materialize'
+import { useParams } from 'react-router-dom'
+import { Dropdown, Button, Divider, Icon } from 'react-materialize'
+import ProductCard from './ProductCard'
+
+const ResultSearchProduct = (props) => {
+    const products = props.products
+    let { textsearch } = useParams()
+    console.log(products)
+    const [orderProduct, setOrderProduct] = useState([])
+
+    const orderButton = () => {
+        return (
+            <Dropdown
+                id="Dropdown_6"
+                options={{
+                    alignment: 'left',
+                    autoTrigger: true,
+                    closeOnClick: true,
+                    constrainWidth: true,
+                    container: null,
+                    coverTrigger: true,
+                    hover: false,
+                    inDuration: 150,
+                    onCloseEnd: null,
+                    onCloseStart: null,
+                    onOpenEnd: null,
+                    onOpenStart: null,
+                    outDuration: 250
+                }}
+                trigger={<Button node="button">Ordenar por</Button>}>
+                <a href="#" onClick={() => ordenarPrecioAsc()}> Precio Ascendente  </a>
+                <a href="#" onClick={() => ordenarPrecioDesc()}> Precio Descendente  </a>
+                <Divider />
+                <a href="#" onClick={() => ordenarAlfabeticamenteAsc()}> Alfabeticamente Ascendente</a>
+                <a href="#" onClick={() => ordenarAlfabeticamenteDesc()}>Alfabeticamente Descendente</a>
+                <Divider />
+                <a href="#" onClick={() => ordenarPromocionAsc()}> Mayor descuento </a>
+                <a href="#" onClick={() => ordenarMasVendidos()}> Más vendidos</a>
+            </Dropdown>
+        )
+    }
+
+    const ordenarPrecioAsc = () => {
+        const list = products.sort((a, b) => parseFloat(a.itemPrice) - parseFloat(b.itemPrice));
+        setOrderProduct(list)
+    }
+
+    const ordenarPrecioDesc = () => {
+        const list = products.sort((a, b) => parseFloat(b.itemPrice) - parseFloat(a.itemPrice));
+        setOrderProduct(list)
+    }
+
+    const ordenarPromocionAsc = () => {
+        const list = products.sort((a, b) => parseFloat(a.promotionalPrice) - parseFloat(b.promotionalPrice));
+        setOrderProduct(list)
+    }
+
+    const ordenarAlfabeticamenteAsc = () => {
+        const list = products.sort(function (a, b) {
+            if (a.itemName < b.itemName) { return -1; }
+            if (a.itemName > b.itemName) { return 1; }
+            return 0;
+        })
+        setOrderProduct(list)
+    }
+
+    const ordenarAlfabeticamenteDesc = () => {
+        const list = products.sort(function (a, b) {
+            if (a.itemName > b.itemName) { return -1; }
+            if (a.itemName < b.itemName) { return 1; }
+            return 0;
+        })
+        setOrderProduct(list)
+    }
+
+    const ordenarMasVendidos = () => {
+        const list = products.sort((a, b) => parseFloat(b.vendidos) - parseFloat(a.vendidos));
+        setOrderProduct(list)
+    }
+
+    const listOfProducts = (productos) => {
+        if (productos.length > 0) {
+            const res = []
+            for (let index = 0; index < productos.length; index++) {
+                const element = productos[index];
+                if (productos[index] === undefined) {
+                } else {
+                    res.push(element)
+                }
+            }
+
+            const result = res.map((product) => {
+                return (
+                    <ProductCard product={product} />
+                )
+            }
+            )
+            return (
+                <div>
+                    <div className="row">
+                        {result}
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    return (
+        products ?
+            orderProduct.length === 0 ?
+                <div>
+                    <div>
+                        {orderButton()}
+                    </div>
+                    <div className='row'>
+                        {listOfProducts(products)}
+                    </div>
+                </div>
+                :
+                <div>
+                    <div>
+                        {orderButton()}
+                    </div>
+                    <div className='row'>
+                        {listOfProducts(orderProduct)}
+                    </div>
+                </div>
+            :
+            <p></p>
+    )
+}
+
+export default ResultSearchProduct;
