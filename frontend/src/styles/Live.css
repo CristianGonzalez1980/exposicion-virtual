@@ -1,13 +1,14 @@
 #imgClasses {
   border-style: none;
-  width: 90%;
-  border-radius: 27%;
-  padding: 15%;
+  width: 95%;
+  border-radius: 15%;
+  padding: 8%;
 }
 
 #imgSchedule {
   width: 100%;
   border-style: none;
+  padding: 3%;
 }
 
 #rowId {

@@ -62,11 +62,11 @@ const Faqs = () => {
   const CourrierImg = () => {
     if (imagesC) {
       return (
-        <div className="row">
-          <div className="col s1">
+        <div className="rowcourrier">
+          <div className="col s6">
             <img alt="1" id="correo1" src={imagesC[0].image} />
           </div>
-          <div className="col s1">
+          <div className="col s6">
             <img alt="2" id="correo2" src={imagesC[1].image} />
           </div>
         </div>

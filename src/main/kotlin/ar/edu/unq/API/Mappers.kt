@@ -48,8 +48,7 @@ data class CompanyRegisterMapper(val companyName: String?,
                                  val companyBanner: String?,
                                  val facebook: String?,
                                  val instagram: String?,
-                                 val web: String?) {
-}
+                                 val web: String?)
 
 data class ProductRegisterMapper(val idProveedor: String?,
                                  val itemName: String?,
@@ -69,6 +68,8 @@ data class SaleMapper(val idProducto: String, val cantidadVendida: Int)
 data class SalesMapper(val sales: List<SaleMapper>)
 
 data class ProductListRegisterMapper(val products: Collection<ProductRegisterMapper>)
+
+data class BannerListRegisterMapper(val banners: Collection<BannerRegisterMapper>)
 
 data class OkResultMapper(val result: String)
 

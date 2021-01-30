@@ -5,7 +5,7 @@ const Howtobuy = () => {
 
   return (
     <div className="mt-4">
-      <h3 id='HTBh1'> Como comprar </h3>
+      <h3 id='HTBh1'> Como comprar</h3>
       <ol id="olList">
         <li>Elige el producto que deseas comprar.</li>
         <li>Haz clic en el botón de "Agregar al carrito". Esto agregará el producto a tu carrito y te llevará al mismo.</li>

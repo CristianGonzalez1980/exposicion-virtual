@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
 import AdminOptions from "../AdminOptions";
+import CloudImageUpload from "../CloudImageUpload";
 
 const AddProveedor = (props) => {
   const history = useHistory();
@@ -29,12 +30,15 @@ const AddProveedor = (props) => {
   });
 
   const agregarProveedor = () => {
+    return(<CloudImageUpload image={companyImage} fx={setUrlLogo} />);
+
+    /*
     if (companyImage) {
       const data = new FormData();
       data.append("file", companyImage);
-      data.append("upload_preset", "insta-clon-GB");
-      data.append("cloud_name", "instaclongbarreiro");
-      fetch("https://api.cloudinary.com/v1_1/instaclongbarreiro/image/upload", {
+      data.append("upload_preset", "development");
+      data.append("cloud_name", "expovirtual");
+      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
         method: "POST",
         body: data,
       })
@@ -42,46 +46,49 @@ const AddProveedor = (props) => {
         .then((data) => {
           console.log(data);
           setUrlLogo(data.url);
-          postear()
+          //   postear()
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
       M.toast({ html: "cargar imagen", classes: "#c62828 red darken-3" });
-    }
+    }*/
   };
   const subirBanner = () => {
+    return(<CloudImageUpload image={companyBanner} fx={setUrlBanner} />);
+    /*
     if (companyBanner) {
       const data = new FormData();
       data.append("file", companyBanner);
-      data.append("upload_preset", "insta-clon-GB");
-      data.append("cloud_name", "instaclongbarreiro");
-      fetch("https://api.cloudinary.com/v1_1/instaclongbarreiro/image/upload", {
+      data.append("upload_preset", "development");
+      data.append("cloud_name", "expovirtual");
+      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
         method: "POST",
         body: data,
       })
         .then((res) => res.json())
         .then((data) => {
           setUrlBanner(data.url);
-          postear()
+          // postear()
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
       M.toast({ html: "cargar imagen", classes: "#c62828 red darken-3" });
-    }
+    }*/
   };
-
-  const postear = () => {
-    if (urlLogo && urlBanner) {
-      console.log("se hizo el posteo")
-      postearAdd()
-    } else (
-      console.log("no se hizo el posteo por que urlLogo es " + { urlLogo } + " y urlBanner es " + { urlBanner })
-    )
-  }
+  /*
+    const postear = () => {
+      if (urlLogo && urlBanner) {
+        console.log("se hizo el posteo")
+        postearAdd()
+      } else (
+        console.log("no se hizo el posteo por que urlLogo es " + { urlLogo } + " y urlBanner es " + { urlBanner })
+      )
+    }
+    */
   const postearAdd = () => {
 
     if (companyName && companyImage && facebook && instagram && web && companyBanner) {
@@ -169,7 +176,10 @@ const AddProveedor = (props) => {
               <div className="file-field input-field">
                 <div className="btn" id='buttonUploadImages'>
                   <span>Cargar banner</span>
-                  <input type="file" onChange={(e) => setcompanyBanner(e.target.files[0])} required />
+                  <input type="file" onChange={(e) => {
+                    setcompanyBanner(e.target.files[0])
+                    console.log(e.target.files[0])
+                  }} required />
                 </div>
                 <div className="file-path-wrapper">
                   <input className="file-path validate" type="text" value={companyBanner ? companyBanner.name : ""} />
@@ -180,7 +190,12 @@ const AddProveedor = (props) => {
               <div className="col s12">
                 <a onClick={() => {
                   agregarProveedor();
-                  subirBanner()
+                  subirBanner();
+                  //  CloudImageUpload({ image: companyImage }, { property: {setUrlLogo} });
+                  console.log(urlLogo)
+                  //  CloudImageUpload({ image: companyBanner }, { property: {setUrlBanner} });
+                  console.log(urlBanner)
+                  postearAdd()
                 }} className="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar proveedor</a>
               </div>
             </div>

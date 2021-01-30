@@ -32,9 +32,11 @@ fun main(args: Array<String>) {
     val adminController = AdminController(backendAdminService, tokenJWT, jwtAccessManager)
     val paymentController = PaymentController()
 
-/*    runTrx({
+/*
+    runTrx({
         MongoAdminDAOImpl().save(Admin("admin","admin"))
-    }, listOf(TransactionType.MONGO),DataBaseType.PRODUCCION)*/
+    }, listOf(TransactionType.MONGO),DataBaseType.PRODUCCION)
+*/
 
     val app = Javalin.create {
         it.defaultContentType = "application/json"
@@ -50,7 +52,7 @@ fun main(args: Array<String>) {
     app.start(7000)
     app.routes {
         path("/process_payment") {
-            post(paymentController::processPayment, mutableSetOf<Role>(Roles.USER))
+            post(paymentController::processPayment, mutableSetOf<Role>(Roles.ANYONE,Roles.USER))
         }
 
         path("/register") {
@@ -76,6 +78,9 @@ fun main(args: Array<String>) {
             }
             path(":bannerCategory"){
                 get(bannerController::bannersByCategory, mutableSetOf<Role>(Roles.ANYONE,Roles.USER,Roles.ADMIN, Roles.ANYONE))
+            }
+            path("massive") {
+                post(bannerController::createMassive, mutableSetOf<Role>(Roles.ADMIN, Roles.ANYONE))
             }
         }
 
@@ -120,7 +125,7 @@ fun main(args: Array<String>) {
 
         }
         path("productSales") {
-            put(productController::decreaseProduct, mutableSetOf<Role>(Roles.USER))
+            put(productController::decreaseProduct, mutableSetOf<Role>(Roles.ANYONE,Roles.USER))
         }
     }
 }

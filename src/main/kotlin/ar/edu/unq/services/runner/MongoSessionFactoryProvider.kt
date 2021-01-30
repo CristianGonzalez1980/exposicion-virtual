@@ -19,7 +19,7 @@ class MongoSessionFactoryProvider() {
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build())
         )
-        val uri = System.getenv().getOrDefault("MONGO_URI", "mongodb+srv://Gustavo:99z2CEj2xWnR4Ntw@cluster0.agdwn.mongodb.net/")
+        val uri = System.getenv().getOrDefault("MONGO_URI", "mongodb+srv://feriavirtualproject2020:jZlRif85aNzAigTS@feriavirtual0.lwyfi.mongodb.net/")
         val connectionString = ConnectionString(uri)
         val settings = MongoClientSettings.builder()
                 .codecRegistry(codecRegistry)

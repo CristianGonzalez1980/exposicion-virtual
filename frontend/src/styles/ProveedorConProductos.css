@@ -4,7 +4,11 @@
 
 .numero {
   font-family: "Lemonada", cursive;
-  color: rgb(245, 58, 58);
+  color: rgb(74, 245, 58);
   font-size: 4rem;
   text-shadow: 2px 2px hsl(115, 100%, 20%);
+}
+
+.pagination li.active {
+  background-color: #41f300;
 }

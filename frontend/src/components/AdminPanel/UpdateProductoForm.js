@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/DeleteBanner.css'
 
@@ -39,9 +39,9 @@ const UpdateProductoForm = (props) => {
         const image = images[index];
         const data = new FormData();
         data.append("file", image);
-        data.append("upload_preset", "insta-clon-GB");
-        data.append("cloud_name", "instaclongbarreiro");
-        fetch("https://api.cloudinary.com/v1_1/instaclongbarreiro/image/upload", {
+        data.append("upload_preset", "development");
+        data.append("cloud_name", "expovirtual");
+        fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
           method: "POST",
           body: data,
         })

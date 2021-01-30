@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import M from 'materialize-css'
+import postearUpdateEntity from '../AdminPanel/FetchFunctions'
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.autocomplete');
@@ -34,9 +35,9 @@ const UpdateProveedorForm = (props) => {
       console.log("POSITIVOSiSubeImagen")
       const data = new FormData();
       data.append("file", companyImage);
-      data.append("upload_preset", "insta-clon-GB");
-      data.append("cloud_name", "instaclongbarreiro");
-      fetch("https://api.cloudinary.com/v1_1/instaclongbarreiro/image/upload", {
+      data.append("upload_preset", "development");
+      data.append("cloud_name", "expovirtual");
+      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
         method: "POST",
         body: data,
       })
@@ -57,9 +58,9 @@ const UpdateProveedorForm = (props) => {
       console.log("POSITIVOSiSubeBanner")
       const data = new FormData();
       data.append("file", companyBanner);
-      data.append("upload_preset", "insta-clon-GB");
-      data.append("cloud_name", "instaclongbarreiro");
-      fetch("https://api.cloudinary.com/v1_1/instaclongbarreiro/image/upload", {
+      data.append("upload_preset", "development");
+      data.append("cloud_name", "expovirtual");
+      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
         method: "POST",
         body: data,
       })
@@ -101,36 +102,19 @@ const UpdateProveedorForm = (props) => {
   }
 
   const postearUpdate = () => {
-    fetch(`http://localhost:7000/companies/${company.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
+
+    postearUpdateEntity({
+      historyProp: history, entityClass: "companies", entity: company, atributes: {
         "companyName": companyName,
         "companyImage": postComapanyImage(),
         "companyBanner": postCompanyBanner(),
         "facebook": facebook,
         "instagram": instagram,
         "web": web
-      })
+      }
     })
-      .then((res) => { return res.json() })
-      .then((data) => {
-        if (data.error) {
-          M.toast({ html: data.error, classes: "#c62828 red darken-3" });
-        } else {
-          M.toast({
-            html: "Proveedor modificado exitosamente",
-            classes: "#388e3c green darken-2",
-          });
-          history.push("/admin");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
+
   console.log(company)
 
   return (
