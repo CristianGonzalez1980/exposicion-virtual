@@ -1,5 +1,4 @@
-
-![CI STATUS](https://github.com/CristianGonzalez1980/exposicion-virtual/workflows/.github/workflows/main.yml/badge.svg)
+[![Java-CI Actions Status](https://github.com/CristianGonzalez1980/exposicion-virtual/workflows/Java-CI/badge.svg)](https://github.com/CristianGonzalez1980/exposicion-virtual/actions)
 
 # Expo Virtual
 Armar el setup inicial del proyecto
