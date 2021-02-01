@@ -35,12 +35,4 @@ La inversión en si es muy rentable, ya que no solo el flujo de concurrentes hab
 
 # Links:
 
-_Product backlog_: https://trello.com/b/WThDtqJH/expo-virtual-history-mapping
-
-_Sprint backlog Sprint 1_: https://trello.com/b/8B6v2Cgm/expo-virtual-1
-
-_Reportes Sprint 1_: https://docs.google.com/document/d/1cqkFNUo3ot9SJ5EK9f-kbiya6-scX6bp/edit#
-
-_Repositorio_: https://github.com/los-expositores-remotos/expo-virtual
-
-_URL del producto_: localhost:3000
+URL del producto_: localhost:3000
