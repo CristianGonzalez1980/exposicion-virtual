@@ -1,6 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { /*useEffect, */useState } from "react";
+import { useHistory/*, Link*/ } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
 
@@ -165,9 +165,9 @@ const AddProduct = (props) => {
         </form>
         <div className="row">
           <div className="col s12">
-            <a onClick={() => {
+            <button onClick={() => {
               subirYPostearAdd()
-            }} className="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar Producto</a>
+            }} className="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar Producto</button>
           </div>
         </div>
       </form>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import '../../styles/Live.css';
 
 const Live = () => {
@@ -69,7 +69,7 @@ const Live = () => {
       <div>
         {
           schedule ?
-            <img atl="img" id="imgSchedule" src={schedule[0].image}></img>
+            <img alt="img" id="imgSchedule" src={schedule[0].image}></img>
             :
             <div>
               <div class="preloader-wrapper big active">

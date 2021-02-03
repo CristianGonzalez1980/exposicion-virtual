@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, /*useEffect, */useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { userContext } from "../../App"
 import "../../styles/Singin.css";
@@ -9,7 +9,7 @@ import axios from "axios";
 const Login = () => {
   const history = useHistory();
   const [dni, setdni] = useState(null);
-  const { state, dispatch } = useContext(userContext);
+  const { /*state, */dispatch } = useContext(userContext);
 
   const PostData = () => {
     if (dni < 1000000) {

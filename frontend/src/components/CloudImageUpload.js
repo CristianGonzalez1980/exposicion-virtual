@@ -1,5 +1,5 @@
 import M from 'materialize-css';
-import React from "react";
+/*import React from "react";*/
 import { useState } from "react";
 //import PostProveedor from "../components/AdminPanel/PostProveedor"
 
@@ -51,8 +51,9 @@ const CloudImageUpload = (props) => {
         }
     }
 
-    uploadImage()
-
+    return (
+        uploadImage()
+    )
 };
 
 export default CloudImageUpload;

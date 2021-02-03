@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/DeleteBanner.css'
-import { Link, useHistory } from 'react-router-dom'
+import { /*Link,*/ useHistory } from 'react-router-dom'
 import M from 'materialize-css'
 import AdminOptions from '../AdminOptions';
 import BannerCategories from '../BannerCategories';
@@ -49,17 +49,17 @@ const DeleteBanner = () => {
 
   const listOfBanners = (category) => {
     if (banners) {
-      const bannersByCategory = banners.filter(banner => banner.category == category)
+      const bannersByCategory = banners.filter(banner => banner.category === category)
       const list = bannersByCategory.map((banner) => {
         return (
           <li>
             <div className="col s1" id='colCard'>
               <div className="card" id='cardDeleteBD'>
                 <div className="card-image" id="imageDB">
-                  <img src={banner.image} />
-                  <a onClick={() => {
+                  <img alt="bannerImage" src={banner.image} />
+                  <button onClick={() => {
                     deleteBanner(banner.id)
-                  }} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">delete</i></a>
+                  }} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">delete</i></button>
                 </div>
               </div>
             </div>

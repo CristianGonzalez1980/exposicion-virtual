@@ -195,7 +195,7 @@ const ShoppingCart = () => {
               <div className="row centerField ">
                 <div className="col s6 offset-6">
                   <input id="inptCartCant" placeholder="Código Postal" value={codigoPostal} onChange={(e) => setCodigoPostal(e.target.value)} />
-                  <a className="waves-effect waves-light btn" onClick={calcularEnvio} style={{ marginLeft: 20 }}>Calcular envío</a>
+                  <button className="waves-effect waves-light btn" onClick={calcularEnvio} style={{ marginLeft: 20 }}>Calcular envío</button>
                 </div>
               </div>
               <div className="row leftField">

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Carousel } from 'react-materialize'
+/*import { Carousel } from 'react-materialize'*/
 import { useParams } from 'react-router-dom'
-import { Dropdown, Button, Divider, Icon } from 'react-materialize'
+import { Dropdown, Button, Divider/*, Icon */} from 'react-materialize'
 import ProductCard from './ProductCard'
+import '../styles/ResultSearchProduct.css'
 
 const ResultSearchProduct = (props) => {
     const products = props.products
@@ -30,14 +31,14 @@ const ResultSearchProduct = (props) => {
                     outDuration: 250
                 }}
                 trigger={<Button node="button">Ordenar por</Button>}>
-                <a href="#" onClick={() => ordenarPrecioAsc()}> Precio Ascendente  </a>
-                <a href="#" onClick={() => ordenarPrecioDesc()}> Precio Descendente  </a>
+                <button href="#" className="link-button" onClick={() => ordenarPrecioAsc()}> Precio+</button>
+                <button href="#" className="link-button" onClick={() => ordenarPrecioDesc()}> Precio-</button>
                 <Divider />
-                <a href="#" onClick={() => ordenarAlfabeticamenteAsc()}> Alfabeticamente Ascendente</a>
-                <a href="#" onClick={() => ordenarAlfabeticamenteDesc()}>Alfabeticamente Descendente</a>
+                <button href="#" className="link-button" onClick={() => ordenarAlfabeticamenteAsc()}> Alfabeticamente+</button>
+                <button href="#" className="link-button" onClick={() => ordenarAlfabeticamenteDesc()}> Alfabeticamente-</button>
                 <Divider />
-                <a href="#" onClick={() => ordenarPromocionAsc()}> Mayor descuento </a>
-                <a href="#" onClick={() => ordenarMasVendidos()}> Más vendidos</a>
+                <button href="#" className="link-button" onClick={() => ordenarPromocionAsc()}> Descuento+</button>
+                <button href="#" className="link-button" onClick={() => ordenarMasVendidos()}> Vendidos+</button>
             </Dropdown>
         )
     }

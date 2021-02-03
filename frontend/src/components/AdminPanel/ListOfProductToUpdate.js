@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect/*, useRef*/ } from 'react'
 import UpdateProductoForm from './UpdateProductoForm'
 import '../../styles/ListOfProductToUpdate.css'
 import AdminProductSearchBar from '../AdminProductSearchBar'

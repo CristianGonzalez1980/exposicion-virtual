@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory/*, Link */} from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
 import AdminOptions from '../AdminOptions';
@@ -112,13 +112,13 @@ const AddBanner = () => {
             </form>
             <div class="row">
               <div class="col s12">
-                <a onClick={() => {
+                <button onClick={() => {
                   agregarBanner();
                   if (image &&
                     category && url) {
                     postearAdd();
                   }
-                }} class="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar Banner</a>
+                }} class="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar Banner</button>
               </div>
             </div>
 

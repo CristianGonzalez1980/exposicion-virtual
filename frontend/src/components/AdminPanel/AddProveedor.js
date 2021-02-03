@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory/*, Link*/ } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
 import AdminOptions from "../AdminOptions";
@@ -30,6 +30,7 @@ const AddProveedor = (props) => {
   });
 
   const agregarProveedor = () => {
+    console.log(companyImage)
     return(<CloudImageUpload image={companyImage} fx={setUrlLogo} />);
 
     /*
@@ -56,6 +57,7 @@ const AddProveedor = (props) => {
     }*/
   };
   const subirBanner = () => {
+    console.log(companyBanner)
     return(<CloudImageUpload image={companyBanner} fx={setUrlBanner} />);
     /*
     if (companyBanner) {
@@ -188,7 +190,7 @@ const AddProveedor = (props) => {
             </form>
             <div className="row">
               <div className="col s12">
-                <a onClick={() => {
+                <button onClick={() => {
                   agregarProveedor();
                   subirBanner();
                   //  CloudImageUpload({ image: companyImage }, { property: {setUrlLogo} });
@@ -196,7 +198,7 @@ const AddProveedor = (props) => {
                   //  CloudImageUpload({ image: companyBanner }, { property: {setUrlBanner} });
                   console.log(urlBanner)
                   postearAdd()
-                }} className="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar proveedor</a>
+                }} className="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar proveedor</button>
               </div>
             </div>
           </form>

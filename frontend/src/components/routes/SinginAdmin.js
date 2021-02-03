@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState/*, useEffect*/, useContext } from "react";
 import { userContext } from "../../App"
 import "../../styles/Singin.css";
 import { Link, useHistory } from "react-router-dom";
@@ -9,7 +9,7 @@ const Login = () => {
   const history = useHistory();
   const [mail, setmail] = useState(null);
   const [password, setpassword] = useState(null);
-  const { state, dispatch } = useContext(userContext);
+  const { /*state, */dispatch } = useContext(userContext);
 
 
   const PostData = () => {
