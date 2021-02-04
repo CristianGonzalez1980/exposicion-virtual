@@ -33,7 +33,7 @@ export const userContext = createContext();
 
 //modificacion
 const Routing = () => {
-  const { state/*, dispatch */} = useContext(userContext);
+  const { state, dispatch } = useContext(userContext);
   console.log(state)
 
   return (

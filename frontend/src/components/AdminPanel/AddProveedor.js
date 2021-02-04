@@ -4,7 +4,7 @@ import { useHistory/*, Link*/ } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
 import AdminOptions from "../AdminOptions";
-import CloudImageUpload from "../CloudImageUpload";
+import uploadImage from "../CloudImageUpload";
 
 const AddProveedor = (props) => {
   const history = useHistory();
@@ -31,66 +31,14 @@ const AddProveedor = (props) => {
 
   const agregarProveedor = () => {
     console.log(companyImage)
-    return(<CloudImageUpload image={companyImage} fx={setUrlLogo} />);
-
-    /*
-    if (companyImage) {
-      const data = new FormData();
-      data.append("file", companyImage);
-      data.append("upload_preset", "development");
-      data.append("cloud_name", "expovirtual");
-      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setUrlLogo(data.url);
-          //   postear()
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      M.toast({ html: "cargar imagen", classes: "#c62828 red darken-3" });
-    }*/
+    uploadImage({ image: companyImage, fx: setUrlLogo });
   };
+
   const subirBanner = () => {
     console.log(companyBanner)
-    return(<CloudImageUpload image={companyBanner} fx={setUrlBanner} />);
-    /*
-    if (companyBanner) {
-      const data = new FormData();
-      data.append("file", companyBanner);
-      data.append("upload_preset", "development");
-      data.append("cloud_name", "expovirtual");
-      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setUrlBanner(data.url);
-          // postear()
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      M.toast({ html: "cargar imagen", classes: "#c62828 red darken-3" });
-    }*/
+    uploadImage({ image: companyBanner, fx: setUrlBanner });
   };
-  /*
-    const postear = () => {
-      if (urlLogo && urlBanner) {
-        console.log("se hizo el posteo")
-        postearAdd()
-      } else (
-        console.log("no se hizo el posteo por que urlLogo es " + { urlLogo } + " y urlBanner es " + { urlBanner })
-      )
-    }
-    */
+
   const postearAdd = () => {
 
     if (companyName && companyImage && facebook && instagram && web && companyBanner) {
@@ -121,7 +69,7 @@ const AddProveedor = (props) => {
           }
         })
         .catch((err) => {
-          //console.log(err);
+          console.log(err);
         });
     } else {
       M.toast({ html: "Llenar todos los campos", classes: "#c62828 red darken-3" });
@@ -190,15 +138,10 @@ const AddProveedor = (props) => {
             </form>
             <div className="row">
               <div className="col s12">
-                <button onClick={() => {
+                <a onClick={() => {
                   agregarProveedor();
                   subirBanner();
-                  //  CloudImageUpload({ image: companyImage }, { property: {setUrlLogo} });
-                  console.log(urlLogo)
-                  //  CloudImageUpload({ image: companyBanner }, { property: {setUrlBanner} });
-                  console.log(urlBanner)
-                  postearAdd()
-                }} className="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar proveedor</button>
+                }} className="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar proveedor</a>
               </div>
             </div>
           </form>

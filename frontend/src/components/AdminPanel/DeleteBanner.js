@@ -12,9 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const DeleteBanner = () => {
   const history = useHistory()
+  const [prevBanners, setPrevBanners] = useState([])
   const [banners, setBanners] = useState([])
   const [category, setcategory] = useState(null)
   useEffect(() => {
+    if ( banners.length !== prevBanners.length || prevBanners.length === 0 ){//cargaba los banners constantemente
     fetch(`http://localhost:7000/banners`, {
       headers: {
       }
@@ -25,12 +27,13 @@ const DeleteBanner = () => {
         }
       })
       .then((result) => {
+        setPrevBanners(banners)
         setBanners(result)
       })
       .catch((err => {
         console.log(err)
-      }))
-  }, [banners])
+      }))}
+  }, [banners]);
 
   const deleteBanner = (id) => {
     fetch(`http://localhost:7000/banners/${id}`, {
