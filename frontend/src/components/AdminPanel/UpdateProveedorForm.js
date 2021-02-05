@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import M from 'materialize-css'
 import postearUpdateEntity from '../AdminPanel/FetchFunctions'
+import uploadImage from "../CloudImageUpload";
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.autocomplete');
@@ -30,50 +31,20 @@ const UpdateProveedorForm = (props) => {
   }, [urlimage, urlBanner]);
 
   const agregarProveedor = () => {
-    console.log("preguntandoSiSubeImagen")
+
     if (SubirAlaNubeImagen()) {
-      console.log("POSITIVOSiSubeImagen")
-      const data = new FormData();
-      data.append("file", companyImage);
-      data.append("upload_preset", "development");
-      data.append("cloud_name", "expovirtual");
-      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setUrlimage(data.url);
-        /*  setpostear(true)*/
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      uploadImage({ image: companyImage, fx: setUrlimage });
+      setcompanyImage(urlimage)
+
     } else {
-      console.log("NEGATIVOiSubeImagen")
       setUrlimage(companyImage)
     }
-    console.log("preguntandoSiSubeBanner")
+
     if (SubirAlaNubeBanner()) {
-      console.log("POSITIVOSiSubeBanner")
-      const data = new FormData();
-      data.append("file", companyBanner);
-      data.append("upload_preset", "development");
-      data.append("cloud_name", "expovirtual");
-      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setUrlBanner(data.url);
-     /*     setpostear(true)*/
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      uploadImage({ image: companyBanner, fx: setUrlBanner });
+      setcompanyBanner(urlBanner)
+
     } else {
-      console.log("NEGATIVOiSubeBanner")
       setUrlBanner(companyBanner)
     }
   };
@@ -86,29 +57,13 @@ const UpdateProveedorForm = (props) => {
     return (typeof companyBanner !== "string")
   }
 
-  const postCompanyImage = () => {
-    if (SubirAlaNubeImagen()) {
-      return urlimage
-    } else {
-      return companyImage
-    }
-  }
-
-  const postCompanyBanner = () => {
-    if (SubirAlaNubeBanner()) {
-      return urlBanner
-    } else {
-      return companyBanner
-    }
-  }
-
   const postearUpdate = () => {
     console.log("entreaPostearUpdate")
     postearUpdateEntity({
       historyProp: history, entityClass: "companies", entity: company, atributes: {
         "companyName": companyName,
-        "companyImage": postCompanyImage(),
-        "companyBanner": postCompanyBanner(),
+        "companyImage": companyImage,
+        "companyBanner": companyBanner,
         "facebook": facebook,
         "instagram": instagram,
         "web": web
