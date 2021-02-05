@@ -3,6 +3,7 @@ import { /*useEffect, */useState } from "react";
 import { useHistory/*, Link*/ } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
+import uploadImage from "../CloudImageUpload";
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.autocomplete');
@@ -13,6 +14,7 @@ const AddProduct = (props) => {
   const history = useHistory();
   const company = props.company
   const [url, setUrl] = useState([]);
+  const [urlTemp, setUrlTemp] = useState(null)
   const [itemName, setitemName] = useState(null)
   const [description, setdescription] = useState(null)
   const [images, setimages] = useState(null)
@@ -26,30 +28,22 @@ const AddProduct = (props) => {
 
   const subirYPostearAdd = () => {
     var listimages = []
+
     if (images && images.length >= 0) {
       for (let index = 0; index < images.length; index++) {
         const image = images[index];
-        const data = new FormData();
-        data.append("file", image);
-        data.append("upload_preset", "development");
-        data.append("cloud_name", "expovirtual");
-        fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
-          method: "POST",
-          body: data,
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            listimages.push(data.url)
-            if (index === (images.length - 1)) {
-              postearAdd(listimages)
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      };
-    } else {
-      M.toast({ html: "cargar imagen", classes: "#c62828 red darken-3" });
+
+        uploadImage({ image: image, fx: setUrlTemp });
+        console.log(urlTemp)
+        listimages.push(urlTemp)
+
+        if (index === (images.length - 1)) {
+          postearAdd(listimages)
+        }
+      }
+    }
+    for (let index = 0; index < listimages.length; index++) {
+      console.log(listimages[index]);
     }
   };
 

@@ -1,8 +1,5 @@
-import React from "react";
 //import { useHistory } from "react-router-dom";
 import M from 'materialize-css'
-
-const FetchFunctions = () => {
 
     const postearUpdateEntity = (props) => {
         const history = props.historyProp
@@ -48,7 +45,6 @@ const FetchFunctions = () => {
                 console.log(err);
             });
     };
-    return(<div>{}</div>);
-}
 
-export default FetchFunctions;
+
+export default postearUpdateEntity;

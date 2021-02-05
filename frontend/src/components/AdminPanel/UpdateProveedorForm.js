@@ -21,7 +21,7 @@ const UpdateProveedorForm = (props) => {
   const [instagram, setinstagram] = useState(company.instagram)
   const [web, setweb] = useState(company.web)
   const [subir, setSubir] = useState(false)
-  const [postear, setpostear] = useState(false)
+/*  const [postear, setpostear] = useState(false)*/
 
   useEffect(() => {
     if (urlimage && urlBanner) {
@@ -44,7 +44,7 @@ const UpdateProveedorForm = (props) => {
         .then((res) => res.json())
         .then((data) => {
           setUrlimage(data.url);
-          setpostear(true)
+        /*  setpostear(true)*/
         })
         .catch((err) => {
           console.log(err);
@@ -67,12 +67,13 @@ const UpdateProveedorForm = (props) => {
         .then((res) => res.json())
         .then((data) => {
           setUrlBanner(data.url);
-          setpostear(true)
+     /*     setpostear(true)*/
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
+      console.log("NEGATIVOiSubeBanner")
       setUrlBanner(companyBanner)
     }
   };
@@ -85,7 +86,7 @@ const UpdateProveedorForm = (props) => {
     return (typeof companyBanner !== "string")
   }
 
-  const postComapanyImage = () => {
+  const postCompanyImage = () => {
     if (SubirAlaNubeImagen()) {
       return urlimage
     } else {
@@ -102,11 +103,11 @@ const UpdateProveedorForm = (props) => {
   }
 
   const postearUpdate = () => {
-
+    console.log("entreaPostearUpdate")
     postearUpdateEntity({
       historyProp: history, entityClass: "companies", entity: company, atributes: {
         "companyName": companyName,
-        "companyImage": postComapanyImage(),
+        "companyImage": postCompanyImage(),
         "companyBanner": postCompanyBanner(),
         "facebook": facebook,
         "instagram": instagram,
@@ -178,11 +179,11 @@ const UpdateProveedorForm = (props) => {
           <div class="col s12">
             <a onClick={() => {
               if (subir) {
-                console.log("ENTRE AL SUBIR VERDADERO")
+                console.log("MODIFIQUE IMAGENES")
                 agregarProveedor();
-                setpostear(true)
+                /*setpostear(true)*/
               } else {
-                console.log("ENTRE AL SUBIR FALSO")
+                console.log("NO MODIFIQUE IMAGENES")
                 postearUpdate()
               }
             }

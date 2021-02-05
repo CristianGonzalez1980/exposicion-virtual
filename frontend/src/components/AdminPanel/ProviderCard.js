@@ -3,10 +3,8 @@ import '../../styles/DeleteProveedor.css'
 
 const ProviderCard = (props) => {
 
-  console.log(props)
   var provider = props.cp
   var funcionD = props.fx
-  console.log(funcionD)
   var iconFx = props.icon
 
   return (
