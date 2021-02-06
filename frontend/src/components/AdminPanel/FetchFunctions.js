@@ -72,5 +72,54 @@ const postearAddEntity = (props) => {
         });
 };
 
+const postearDeleteEntity = (props) => {
+    const history = props.historyProp
+    const entityClass = props.entityClass
+    const id = props.id
 
-export { postearUpdateEntity, postearAddEntity };
+    fetch(`http://localhost:7000/${entityClass}/${id}`, {
+        method: 'DELETE',
+        headers: {
+        }
+    }).then((res) => res.json())
+        .then((data) => {
+            if (data.error) {
+                M.toast({
+                    html: data.error, classes: "#c62828 red darken-3"
+                });
+            } else {
+                M.toast({
+                    html: "Proveedor eliminado exitosamente",
+                    classes: "#388e3c green darken-2",
+                });
+                history.push("/admin");
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+const postearGetEntity = (props) => {
+    const entityClass = props.entityClass
+    const functionD = props.fx
+
+    fetch(`http://localhost:7000/${entityClass}`, {
+        headers: {
+        }
+    })
+        .then((res) => {
+            if (res.ok) {
+                return res.json()
+            }
+        })
+        .then((result) => {
+            functionD(result)
+        })
+        .catch((err => {
+            console.log(err)
+        }))
+
+}
+
+export { postearUpdateEntity, postearAddEntity, postearDeleteEntity, postearGetEntity };

@@ -1,48 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/DeleteProveedor.css'
 import { useHistory } from "react-router-dom"
-import M from 'materialize-css'
 import AdminOptions from "../AdminOptions";
 import CardProviderwFx from './CardProviderwFx';
 import AdminProveedorSearchBar from '../AdminProveedorSearchBar';
+import { postearDeleteEntity, postearGetEntity } from '../AdminPanel/FetchFunctions'
 
 const DeleteProveedor = () => {
   const history = useHistory()
   const [companies, setCompanies] = useState([])
   const [search, setsearch] = useState(null)
+  const [deleteCompanyAction, setDeleteCompanyAction] = useState(false)
 
   useEffect(() => {
-    fetch(`http://localhost:7000/companies`, {
-      headers: {
-      }
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-      })
-      .then((result) => {
-        setCompanies(result)
-      })
-      .catch((err => {
-        console.log(err)
-      }))
-  }, [search])
+    postearGetEntity({
+      entityClass: "companies", fx: setCompanies
+    });
+  }, [search, deleteCompanyAction])
 
   const deleteCompany = (provider) => {
-    var id = provider.id
-    fetch(`http://localhost:7000/companies/${id}`, {
-      method: 'DELETE',
-      headers: {
-      }
-    }).then((res) => {
-      M.toast({
-        html: "Proveedor eliminado exitosamente",
-        classes: "#388e3c green darken-2",
-      });
-      history.push("/admin");
-    }
-    )
+    postearDeleteEntity({
+      historyProp: history, entityClass: "companies", id: provider.id
+    });
+    setDeleteCompanyAction(-deleteCompanyAction)
+
   }
 
   const filterCompanies = () => {
