@@ -4,6 +4,7 @@ import ListOfProductToUpdate from './ListOfProductToUpdate'
 import AdminOptions from '../AdminOptions'
 import CardProviderwFx from './CardProviderwFx';
 import AdminProveedorSearchBar from '../AdminProveedorSearchBar';
+import { postearGetEntity } from '../AdminPanel/FetchFunctions';
 
 const UpdateProducto = () => {
   const [companies, setCompanies] = useState(null)
@@ -12,21 +13,9 @@ const UpdateProducto = () => {
 
   useEffect(() => {
     if (!companies) {
-      fetch(`http://localhost:7000/companies`, {
-        headers: {
-        }
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          setCompanies(result)
-        })
-        .catch((err => {
-          console.log(err)
-        }))
+      postearGetEntity({
+        entityClass: "companies", fx: setCompanies
+      });
     }
   }, [search])
 

@@ -18,7 +18,7 @@ import AddProveedor from './components/AdminPanel/AddProveedor'
 import DeleteBanner from './components/AdminPanel/DeleteBanner'
 import DeleteProducto from './components/AdminPanel/DeleteProducto'
 import DeleteProveedor from './components/AdminPanel/DeleteProveedor'
-import ScreenSelecEmpresaParaAgregarProduct from './components/AdminPanel/ScreenSelecEmpresaParaAgregarProduct'
+import AddProducto from './components/AdminPanel/AddProducto'
 import UpdateProducto from './components/AdminPanel/UpdateProducto'
 import UpdateProveedor from './components/AdminPanel/UpdateProveedor'
 import ResultSearch from './components/ResultSearch.js';
@@ -75,8 +75,8 @@ const Routing = () => {
         <Route exact path="/admin/modificarproveedor" component={state === "admin" ? UpdateProveedor : PageNotFound}>
           {state === "admin" ? <UpdateProveedor /> : <PageNotFound />}
         </Route>
-        <Route exact path="/admin/agregarproducto" component={state === "admin" ? ScreenSelecEmpresaParaAgregarProduct : PageNotFound}>
-          {state === "admin" ? <ScreenSelecEmpresaParaAgregarProduct /> : <PageNotFound />}
+        <Route exact path="/admin/agregarproducto" component={state === "admin" ? AddProducto : PageNotFound}>
+          {state === "admin" ? <AddProducto /> : <PageNotFound />}
         </Route>
         <Route path="/admin/modificarproducto" component={state === "admin" ? UpdateProducto : PageNotFound}>
           {state === "admin" ? <UpdateProducto /> : <PageNotFound />}

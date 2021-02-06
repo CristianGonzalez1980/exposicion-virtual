@@ -17,19 +17,31 @@ const postearUpdateEntity = (props) => {
         body: JSON.stringify(
             atributes
         )
-    })
+    })/*
         .then((res) => res.json())
         .then((data) => {
             if (!data.error) {
                 M.toast({
-                    html: "Proveedor modificado exitosamente",
+                    html: `${entityClass} modificado exitosamente`,
                     classes: "#388e3c green darken-2",
                 });
                 history.push("/admin");
             } else {
                 M.toast({
                     html: data.error, classes: "#c62828 red darken-3"
+                
+                PROBANDO LA OTRA VERSION YA QUE ESTE NO LEIA ERRORES VER AHORA!
+                    */
+        .then((res) => {
+            console.log(res)
+            if (res.ok) {
+                M.toast({
+                    html: `${entityClass} modificado exitosamente`,
+                    classes: "#388e3c green darken-2",
                 });
+                history.push("/admin");
+            } else {
+                M.toast({ html: res.statusText, classes: "#c62828 red darken-3" });
             }
         })
         .catch((err) => {
@@ -119,7 +131,6 @@ const postearGetEntity = (props) => {
         .catch((err => {
             console.log(err)
         }))
-
 }
 
 export { postearUpdateEntity, postearAddEntity, postearDeleteEntity, postearGetEntity };
