@@ -37,8 +37,8 @@ class AuxiliaryFunctions {
     fun companyBodyValidation(ctx: Context): CompanyRegisterMapper {
         return ctx.bodyValidator<CompanyRegisterMapper>()
                 .check(
-                        { it.companyName != null && it.companyImage != null && it.facebook != null && it.instagram != null && it.web != null },
-                        "Invalid body : companyName, companyImage, facebook, instagram and web are required"
+                        { it.companyName != null && it.companyImage != null && it.companyBanner != null && it.facebook != null && it.instagram != null && it.web != null },
+                        "Invalid body : companyName, companyImage, companyBanner, facebook, instagram and web are required"
                 )
                 .get()
     }

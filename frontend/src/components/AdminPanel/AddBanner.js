@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const AddBanner = () => {
   const history = useHistory();
-  const [url, seturl] = useState(null);
+  const [url, setUrl] = useState(null);
   const [image, setimage] = useState(null)
   const [category, setcategory] = useState(null)
 
@@ -36,7 +36,7 @@ const AddBanner = () => {
         .then((res) => res.json())
         .then((data) => {
           const urlb = data.url
-          seturl(urlb);
+          setUrl(urlb);
         })
         .catch((err) => {
         });

@@ -2,7 +2,7 @@ import M from 'materialize-css';
 
 const uploadImage = (props) => {
     console.log(props)
-    var url = null;
+    var url = "";
     const pic = props.image;
     const functionD = props.fx;
 
