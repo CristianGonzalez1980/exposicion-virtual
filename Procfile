@@ -1,1 +1,1 @@
-web: java -Dexec.mainClass="ar.edu.unq.API.main.conextAPI.kt"
+mvn exec:java -Dexec.mainClass="ar.edu.unq.ConextAPIKt"
