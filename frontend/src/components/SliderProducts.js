@@ -3,27 +3,14 @@ import { useState, useEffect } from "react";
 import '../styles/SliderProducts.css'
 import { Button, Slider, Slide, Caption } from "react-materialize"
 import ShopContext from './context/shop-context';
+import { postearGetEntity } from "./AdminPanel/FetchFunctions";
 
 const SliderProducts = () => {
   const [products, setproducts] = useState(null)
 
   useEffect(() => {
     if (!products) {
-      fetch("http://localhost:7000/products", {
-        headers: {
-        }
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          setproducts(result)
-        })
-        .catch((err => {
-          console.log(err)
-        }))
+      postearGetEntity({ entityClass: "products", fx: setproducts });
     }
   }, [products])
 

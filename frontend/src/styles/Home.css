@@ -59,10 +59,10 @@
   background-color: rgba(255, 0, 0, 0.404);
 }
 #googleFont {
-  font-family: "Dancing Script", cursive;
+    font-family: "Dancing Script", cursive;
   text-shadow: 1px 1px hsla(0, 0%, 0%, 0.658);
-  font-size: 4rem;
-  margin-top: 15rem;
+  font-size: 5rem;
+  margin-top: 8rem;
 }
 
 .carousel {
