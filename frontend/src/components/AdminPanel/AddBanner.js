@@ -1,10 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useHistory/*, Link */} from "react-router-dom";
+import { useHistory/*, Link */ } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
 import AdminOptions from '../AdminOptions';
 import BannerCategories from '../BannerCategories';
+import uploadImage from "../CloudImageUpload";
+import { postearAddEntity } from "./FetchFunctions";
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.autocomplete');
@@ -14,64 +16,35 @@ document.addEventListener('DOMContentLoaded', function () {
 const AddBanner = () => {
   const history = useHistory();
   const [url, setUrl] = useState(null);
+  const [urlTemp, setUrlTemp] = useState(null);
   const [image, setimage] = useState(null)
   const [category, setcategory] = useState(null)
+  const [postear, setpostear] = useState(false)
 
   useEffect(() => {
-    if (url) {
+    if (postear) {
       postearAdd();
     }
-  });
+  },[url, postear]);
 
   const agregarBanner = () => {
-    if (image) {
-      const data = new FormData();
-      data.append("file", image);
-      data.append("upload_preset", "development");
-      data.append("cloud_name", "expovirtual");
-      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          const urlb = data.url
-          setUrl(urlb);
-        })
-        .catch((err) => {
-        });
-    } else {
-      M.toast({ html: "cargar imagen", classes: "#c62828 red darken-3" });
-    }
-  };
+    const asubir = image;
+    console.log(asubir)
+    uploadImage({ image: asubir, fx: setUrl });
+    setpostear(true);
+    //setUrl(urlTemp)
+    console.log(url)
+
+  }
 
   const postearAdd = () => {
     if (image && category) {
-      fetch("http://localhost:7000/banners/", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
+      postearAddEntity({
+        historyProp: history, entityClass: "banners", atributes: {
           "banner": url,
           "category": category
-        })
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.error) {
-            M.toast({ html: data.error, classes: "#c62828 red darken-3" });
-          } else {
-            M.toast({
-              html: "Banner agregado exitosamente",
-              classes: "#388e3c green darken-2",
-            });
-            history.push("/admin");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        }
+      });
     } else {
       M.toast({ html: "Llenar todos los campos", classes: "#c62828 red darken-3" });
     }

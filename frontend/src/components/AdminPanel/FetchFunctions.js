@@ -54,8 +54,6 @@ const postearAddEntity = (props) => {
     const entityClass = props.entityClass
     const atributes = props.atributes
 
-    console.log(entityClass)
-
     fetch(`http://localhost:7000/${entityClass}`, {
         method: "POST",
         headers: {

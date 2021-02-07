@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Faqs.css";
 import { Carousel } from 'react-materialize'
+import { postearGetEntity } from "../AdminPanel/FetchFunctions";
 
 const Faqs = () => {
   const [imagesPM, setimagesPM] = useState(null)
@@ -8,40 +9,13 @@ const Faqs = () => {
 
   useEffect(() => {
     if (!imagesPM) {
-      fetch("http://localhost:7000/banners/PAYMENTMETHODS", {
-        headers: {
-        }
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          setimagesPM(result)
-        })
-        .catch((err => {
-          console.log(err)
-        }))
+      postearGetEntity({ entityClass: "banners/PAYMENTMETHODS", fx: setimagesPM });
     }
   }, [imagesPM])
+  
   useEffect(() => {
     if (!imagesC) {
-      fetch("http://localhost:7000/banners/COURRIER", {
-        headers: {
-        }
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          setimagesC(result)
-        })
-        .catch((err => {
-          console.log(err)
-        }))
+      postearGetEntity({ entityClass: "banners/COURRIER", fx: setimagesC });
     }
   }, [imagesC])
 
@@ -54,7 +28,7 @@ const Faqs = () => {
       })
 
       return (
-      <Carousel carouselId="Carousel-2" images={list}/>
+        <Carousel carouselId="Carousel-2" images={list} />
       )
     }
   }
