@@ -1,1 +1,1 @@
-web: java -Dexec.mainClass="ar.edu.unq.ConextAPIKt"
+web: java -jar filename.jar
