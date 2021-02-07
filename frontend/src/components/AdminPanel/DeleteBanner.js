@@ -4,6 +4,7 @@ import { /*Link,*/ useHistory } from 'react-router-dom'
 import M from 'materialize-css'
 import AdminOptions from '../AdminOptions';
 import BannerCategories from '../BannerCategories';
+import { postearDeleteEntity, postearGetEntity } from '../AdminPanel/FetchFunctions'
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('select');
@@ -15,39 +16,22 @@ const DeleteBanner = () => {
   const [prevBanners, setPrevBanners] = useState([])
   const [banners, setBanners] = useState([])
   const [category, setcategory] = useState(null)
+
+  const saveBannerHistory = (gettedBaners) => {
+    setPrevBanners(banners)
+    setBanners(gettedBaners)
+  }
+
   useEffect(() => {
-    if ( banners.length !== prevBanners.length || prevBanners.length === 0 ){//cargaba los banners constantemente
-    fetch(`http://localhost:7000/banners`, {
-      headers: {
-      }
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-      })
-      .then((result) => {
-        setPrevBanners(banners)
-        setBanners(result)
-      })
-      .catch((err => {
-        console.log(err)
-      }))}
-  }, [banners]);
+    if (banners.length !== prevBanners.length || prevBanners.length === 0) {//cargaba los banners constantemente
+      postearGetEntity({
+        entityClass: "banners", fx: saveBannerHistory
+      });
+    }
+  }, [banners, prevBanners]);
 
   const deleteBanner = (id) => {
-    fetch(`http://localhost:7000/banners/${id}`, {
-      method: 'DELETE',
-      headers: {
-      }
-    }).then((res) => {
-      M.toast({
-        html: "Banner eliminado exitosamente",
-        classes: "#388e3c green darken-2",
-      });
-      history.push("/admin");
-    }
-    )
+    postearDeleteEntity({ historyProp: history, entityClass: "banners", id: id });
   }
 
   const listOfBanners = (category) => {

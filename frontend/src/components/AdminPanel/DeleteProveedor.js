@@ -23,7 +23,6 @@ const DeleteProveedor = () => {
       historyProp: history, entityClass: "companies", id: provider.id
     });
     setDeleteCompanyAction(-deleteCompanyAction)
-
   }
 
   const filterCompanies = () => {

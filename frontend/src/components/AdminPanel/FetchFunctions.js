@@ -99,7 +99,7 @@ const postearDeleteEntity = (props) => {
                 });
             } else {
                 M.toast({
-                    html: "Proveedor eliminado exitosamente",
+                    html: `${entityClass} eliminado exitosamente`,
                     classes: "#388e3c green darken-2",
                 });
                 history.push("/admin");

@@ -4,6 +4,7 @@ import ListOfProductToDelete from './ListOfProductToDelete'
 import AdminOptions from '../AdminOptions';
 import CardProviderwFx from './CardProviderwFx';
 import AdminProveedorSearchBar from '../AdminProveedorSearchBar';
+import { postearDeleteEntity, postearGetEntity } from '../AdminPanel/FetchFunctions'
 
 const DeleteProducto = () => {
   const [companies, setCompanies] = useState(null)
@@ -12,21 +13,9 @@ const DeleteProducto = () => {
 
   useEffect(() => {
     if (!companies) {
-      fetch(`http://localhost:7000/companies`, {
-        headers: {
-        }
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          setCompanies(result)
-        })
-        .catch((err => {
-          console.log(err)
-        }))
+      postearGetEntity({
+        entityClass: "companies", fx: setCompanies
+      });
     }
   }, [search])
 
