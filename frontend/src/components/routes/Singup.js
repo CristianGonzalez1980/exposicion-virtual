@@ -53,21 +53,21 @@ const Singup = () => {
         <img alt='logo' className="logo-login" src={logo} />
         <input
           type="text"
-          placeholder="Intruduzca su nombre"
+          placeholder="Ingrese nombre"
           id='inputLogin'
           value={nombre}
           onChange={(e) => setnombre(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Intruduzca su apellido"
+          placeholder="Ingrese apellido"
           id='inputLogin'
           value={apellido}
           onChange={(e) => setapellido(e.target.value)}
         />
         <input
           type="number"
-          placeholder="Intruduzca su DNI"
+          placeholder="Ingrese DNI"
           id='inputLogin'
           value={dni}
           onChange={(e) => setdni(e.target.value)}
@@ -80,7 +80,7 @@ const Singup = () => {
           Registrar
         </button>
         <h5 id="H5Register">
-          <Link id="linkRegister" to="/login">Ya te encuentras registrado ?</Link>
+          <Link id="linkRegister" to="/login">Ya estas registrado?</Link>
         </h5>
       </div>
     </div>

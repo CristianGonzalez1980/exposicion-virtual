@@ -49,7 +49,7 @@ const Login = () => {
         <input
           type="number"
           id='inputLogin'
-          placeholder="Ingrese su DNI"
+          placeholder="Ingrese DNI"
           value={dni}
           onChange={(e) => setdni(e.target.value)}
         />
@@ -61,7 +61,7 @@ const Login = () => {
           Ingresar
         </button>
         <h5 id="H5Register">
-          <Link id="linkRegister" to="/login/admin">Ingresar como Administrador</Link>
+          <Link id="linkRegister" to="/login/admin">Ingresar como administrador</Link>
           <tr />
           <Link id="linkRegister" to="/register">Registrate acá</Link>
         </h5>

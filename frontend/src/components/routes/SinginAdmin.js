@@ -48,14 +48,14 @@ const Login = () => {
         <input
           type="text"
           id='inputLogin'
-          placeholder="Ingrese su Usuario"
+          placeholder="Ingrese usuario"
           value={mail}
           onChange={(e) => setmail(e.target.value)}
         />
         <input
           type="password"
           id='inputLogin'
-          placeholder="Ingrese su contraseña"
+          placeholder="Ingrese contraseña"
           value={password}
           onChange={(e) => setpassword(e.target.value)}
         />
