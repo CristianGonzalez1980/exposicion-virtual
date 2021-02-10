@@ -1,22 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 /*import { Carousel } from 'react-materialize'*/
 import { useParams } from 'react-router-dom'
-import { Dropdown, Button, Divider/*, Icon */} from 'react-materialize'
+import { Dropdown, Button, Divider/*, Icon */ } from 'react-materialize'
 import ProductCard from './ProductCard'
 import '../styles/ResultSearchProduct.css'
 
 const ResultSearchProduct = (props) => {
-    const products = props.products
+    let products = props.products
     let { textsearch } = useParams()
     console.log(products)
     const [orderProduct, setOrderProduct] = useState([])
+    const [newOrder, setNewOrder] = useState(false)
+    const [criteria, setCriteria] = useState('criterio seleccionado')
 
-    const orderButton = () => {
+    useEffect(() => {
+
+    }, [products]);
+
+    const orderButton = (toOrder) => {
         return (
             <Dropdown
                 id="Dropdown_6"
                 options={{
-                    alignment: 'left',
+                    alignment: 'center',
                     autoTrigger: true,
                     closeOnClick: true,
                     constrainWidth: true,
@@ -30,69 +36,89 @@ const ResultSearchProduct = (props) => {
                     onOpenStart: null,
                     outDuration: 250
                 }}
-                trigger={<Button node="button">Ordenar por</Button>}>
-                <button href="#" className="link-button" onClick={() => ordenarPrecioAsc()}> Precio+</button>
-                <button href="#" className="link-button" onClick={() => ordenarPrecioDesc()}> Precio-</button>
+                trigger={<Button node="button">Ordenar por:</Button>}>
+                <button href="#" className="link-button" onClick={() => ordenarPrecioAsc(toOrder)}>Menor Precio</button>
+                <button href="#" className="link-button" onClick={() => ordenarPrecioDesc(toOrder)}>Mayor Precio</button>
                 <Divider />
-                <button href="#" className="link-button" onClick={() => ordenarAlfabeticamenteAsc()}> Alfabeticamente+</button>
-                <button href="#" className="link-button" onClick={() => ordenarAlfabeticamenteDesc()}> Alfabeticamente-</button>
+                <button href="#" className="link-button" onClick={() => ordenarAlfabeticamenteAsc(toOrder)}>A - Z</button>
+                <button href="#" className="link-button" onClick={() => ordenarAlfabeticamenteDesc(toOrder)}>Z - A</button>
                 <Divider />
-                <button href="#" className="link-button" onClick={() => ordenarPromocionAsc()}> Descuento+</button>
-                <button href="#" className="link-button" onClick={() => ordenarMasVendidos()}> Vendidos+</button>
+                <button href="#" className="link-button" onClick={() => ordenarPromocionAsc(toOrder)}>Mejor Descuento</button>
+                <button href="#" className="link-button" onClick={() => ordenarMasVendidos(toOrder)}>Más Vendidos</button>
             </Dropdown>
         )
     }
 
-    const ordenarPrecioAsc = () => {
-        const list = products.sort((a, b) => parseFloat(a.itemPrice) - parseFloat(b.itemPrice));
+    const ordenarPrecioAsc = (toOrder) => {
+        const list = toOrder.sort((a, b) => parseFloat(a.itemPrice) - parseFloat(b.itemPrice));
         setOrderProduct(list)
+        setNewOrder(-newOrder)
+        setCriteria('menor precio')
+        products = null
+
     }
 
-    const ordenarPrecioDesc = () => {
-        const list = products.sort((a, b) => parseFloat(b.itemPrice) - parseFloat(a.itemPrice));
+    const ordenarPrecioDesc = (toOrder) => {
+        const list = toOrder.sort((a, b) => parseFloat(b.itemPrice) - parseFloat(a.itemPrice));
         setOrderProduct(list)
+        setNewOrder(-newOrder)
+        setCriteria('mayor precio')
+        products = null
+
     }
 
-    const ordenarPromocionAsc = () => {
-        const list = products.sort((a, b) => parseFloat(a.promotionalPrice) - parseFloat(b.promotionalPrice));
+    const ordenarPromocionAsc = (toOrder) => {
+        const list = toOrder.sort((a, b) => parseFloat(a.promotionalPrice) - parseFloat(b.promotionalPrice));
         setOrderProduct(list)
+        setNewOrder(-newOrder)
+        setCriteria('mejor descuento')
+        products = null
     }
 
-    const ordenarAlfabeticamenteAsc = () => {
-        const list = products.sort(function (a, b) {
+    const ordenarAlfabeticamenteAsc = (toOrder) => {
+        const list = toOrder.sort(function (a, b) {
             if (a.itemName < b.itemName) { return -1; }
             if (a.itemName > b.itemName) { return 1; }
             return 0;
         })
         setOrderProduct(list)
+        setNewOrder(-newOrder)
+        setCriteria('A - Z')
+        products = null
     }
 
-    const ordenarAlfabeticamenteDesc = () => {
-        const list = products.sort(function (a, b) {
+    const ordenarAlfabeticamenteDesc = (toOrder) => {
+        const list = toOrder.sort(function (a, b) {
             if (a.itemName > b.itemName) { return -1; }
             if (a.itemName < b.itemName) { return 1; }
             return 0;
         })
         setOrderProduct(list)
+        setNewOrder(-newOrder)
+        setCriteria('Z - A')
+        products = null
     }
 
-    const ordenarMasVendidos = () => {
-        const list = products.sort((a, b) => parseFloat(b.vendidos) - parseFloat(a.vendidos));
+    const ordenarMasVendidos = (toOrder) => {
+        const list = toOrder.sort((a, b) => parseFloat(b.vendidos) - parseFloat(a.vendidos));
         setOrderProduct(list)
+        setNewOrder(-newOrder)
+        setCriteria('más vendidos')
+        products = null
     }
 
-    const listOfProducts = (productos) => {
-        if (productos.length > 0) {
-            const res = []
-            for (let index = 0; index < productos.length; index++) {
-                const element = productos[index];
-                if (productos[index] === undefined) {
-                } else {
-                    res.push(element)
-                }
-            }
-
-            const result = res.map((product) => {
+    const listOfProducts = (toOrder) => {
+        if (toOrder.length > 0) {
+            /*      const res = []
+                  for (let index = 0; index < productos.length; index++) {
+                      const element = productos[index];
+                      if (productos[index] === undefined) {
+                      } else {
+                          res.push(element)
+                      }
+                  }
+      */
+            const result = toOrder.map((product) => {
                 return (
                     <ProductCard product={product} />
                 )
@@ -110,26 +136,41 @@ const ResultSearchProduct = (props) => {
 
     return (
         products ?
-            orderProduct.length === 0 ?
+            <div>
                 <div>
-                    <div>
-                        {orderButton()}
-                    </div>
-                    <div className='row'>
-                        {listOfProducts(products)}
+                    <div className="row">
+                        <div className="col s2">{orderButton(products)}</div>
+                        <div id= "criteriasel" className="col s4"><h6>{criteria}</h6></div>
                     </div>
                 </div>
-                :
+                <div className='row'>
+                    {listOfProducts(products)}
+                </div>
+            </div>
+            : newOrder ?
                 <div>
                     <div>
-                        {orderButton()}
+                        <div className="row">
+                            <div className="col s2">{orderButton(orderProduct)}</div>
+                            <div id= "criteriasel" className="col s4"><h6>{criteria}</h6></div>
+                        </div>
                     </div>
                     <div className='row'>
                         {listOfProducts(orderProduct)}
                     </div>
                 </div>
-            :
-            <p></p>
+                :
+                <div>
+                    <div>
+                        <div className="row">
+                            <div className="col s2">{orderButton(orderProduct)}</div>
+                            <div id= "criteriasel" className="col s4"><h6>{criteria}</h6></div>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        {listOfProducts(orderProduct)}
+                    </div>
+                </div>
     )
 }
 

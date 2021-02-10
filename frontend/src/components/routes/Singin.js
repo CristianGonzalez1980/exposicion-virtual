@@ -28,7 +28,7 @@ const Login = () => {
           localStorage.setItem("user", "usuario");
           dispatch({ type: "USER", payload: "user" });
           M.toast({
-            html: "Loggeado exitosamente",
+            html: `Bienvenido ${localStorage.nombre}`,
             classes: "#388e3c green darken-2",
           });
           console.log("success", success.headers.authorization);

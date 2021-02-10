@@ -8,7 +8,7 @@ const ListOfProductToDelete = (props) => {
   const company = props.company
   const history = useHistory()
   const [products, setproducts] = useState([])
-  const [prevProducts, setprevProducts] = useState([])
+//  const [prevProducts, setprevProducts] = useState([])
 
   useEffect(() => {
     if (products.length === 0) {
@@ -16,7 +16,7 @@ const ListOfProductToDelete = (props) => {
         entityClass: `products/supplier/${company.id}`, fx: setproducts
       });
     }
-  }, [products])
+  }, [])
 
   const deleteProduct = (id) => {
     postearDeleteEntity({
@@ -26,7 +26,7 @@ const ListOfProductToDelete = (props) => {
   }
 
   const doDeleteProduct = (products, product) => {
-    setprevProducts(products)
+  //  setprevProducts(products)
     deleteProduct(product.id)
   }
 

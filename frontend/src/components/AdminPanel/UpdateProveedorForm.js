@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const UpdateProveedorForm = (props) => {
-  const history = useHistory();
+  const history = useHistory()
   const company = props.company
   const [urlImage, setUrlImage] = useState(null)
   const [urlBanner, setUrlBanner] = useState(null)
@@ -30,7 +30,7 @@ const UpdateProveedorForm = (props) => {
     if ((urlImage !== null) && (urlBanner !== null)) {
       postearUpdate();
     }
-  }, [urlImage, urlBanner]);
+  }, [urlImage, urlBanner, company]);
 
   const agregarProveedor = () => {
 
@@ -57,6 +57,10 @@ const UpdateProveedorForm = (props) => {
 
   const postearUpdate = () => {
     console.log("entreaPostearUpdate")
+    if(!subir){
+      setUrlBanner(companyBanner)
+      setUrlImage(companyImage)
+    }
     console.log(urlImage)
     console.log(urlBanner)
     postearUpdateEntity({

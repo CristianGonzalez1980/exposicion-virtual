@@ -9,7 +9,7 @@ const ListOfProductToUpdate = (props) => {
   const company = props.company
   const [products, setproducts] = useState([])
   const [cliked, setCliked] = useState(null)
-  const [prevProducts, setprevProducts] = useState([])
+  //const [prevProducts, setprevProducts] = useState([])
 
   useEffect(() => {
     if (products.length === 0) {
@@ -17,7 +17,7 @@ const ListOfProductToUpdate = (props) => {
         entityClass: `products/supplier/${company.id}`, fx: setproducts
       });
     }
-  }, [products])
+  }, [])
 
   const doUpdateProduct = (products, product) => {
     setCliked(<UpdateProductoForm product={product} />)

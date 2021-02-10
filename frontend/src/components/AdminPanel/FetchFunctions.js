@@ -71,7 +71,7 @@ const postearAddEntity = (props) => {
                 });
             } else {
                 M.toast({
-                    html: "Proveedor agregado exitosamente",
+                    html: `${entityClass} agregado exitosamente`,
                     classes: "#388e3c green darken-2",
                 });
                 history.push("/admin");

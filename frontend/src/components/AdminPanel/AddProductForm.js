@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useHistory/*, Link*/ } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
 import uploadImage from "../CloudImageUpload";
@@ -19,7 +19,7 @@ const AddProduct = (props) => {
   const [itemName, setitemName] = useState(null)
   const [description, setdescription] = useState(null)
   const [images, setimages] = useState(null)
-  const [urlList, setUrlList] = useState(null)
+  //const [urlList, setUrlList] = useState(null)
   const [stock, setstock] = useState(null)
   const [itemPrice, setitemPrice] = useState(null)
   const [promotionalPrice, setpromotionalPrice] = useState(null)
@@ -31,33 +31,45 @@ const AddProduct = (props) => {
 
   useEffect(() => {
     if (postear) {
-      postearAdd(urlList);
+      console.log(urlTemp)
+      //setUrl([...url, urlTemp])
+      //setUrl(currentUrl => currentUrl.concat(urlTemp))
+      //setUrl([urlTemp])
+      //console.log(url)
+      postearAdd();
     }
   }, [urlTemp]);
 
-  const subirYPostearAdd = () => {
-    var listimages = []
+  const subirYPostearAdd = (e) => {
+    e.preventDefault();
+    //var url = []
+    /*
+        if (images && images.length >= 0) {
+          for (let index = 0; index < images.length; index++) {
+            const image = images[index];
+    */
+    console.log(images[0])
+    uploadImage({ image: images[0], fx: setUrlTemp });
+    // while (!urlTemp) {  }
+    //listimages.push(url)
 
-    if (images && images.length >= 0) {
-      for (let index = 0; index < images.length; index++) {
-        const image = images[index];
-
-        uploadImage({ image: image, fx: setUrlTemp });
-        console.log(urlTemp)
-        listimages.push(urlTemp)
-
-        if (index === (images.length - 1)) {
-          setUrlList(listimages);
-          setpostear(true);
-        }
-      }
+    // if (index === (images.length - 1)) {
+    //setUrlList(listimages);
+    //setUrl(listimages)
+    //postearAdd(url);
+    setpostear(true);
+    /*//   }
+    //}
     }
     for (let index = 0; index < listimages.length; index++) {
-      console.log(listimages[index]);
-    }
+    console.log(listimages[index]);
+    }*/
   };
 
-  const postearAdd = (listimages) => {
+  const postearAdd = () => {
+    console.log(urlTemp)
+    const imagesToSave = [urlTemp] 
+    console.log(imagesToSave)
     console.log(itemName);
     console.log(stock);
     console.log(itemPrice);
@@ -66,19 +78,27 @@ const AddProduct = (props) => {
     console.log(longitud);
     console.log(alto);
     console.log(ancho);
-    console.log(listimages);
+   // console.log(url);
+  //  console.log(url.length > 0);
+  //  console.log(url.length);
+    console.log("entreaPostearAdd")
 
-    if (itemName && description && stock && itemPrice && promotionalPrice && listimages) {
-      fetch("http://localhost:7000/products", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
+  //  var someNull = url.some(function (el) {
+ //     return el === null;
+  //  });
+
+
+ //   console.log(someNull);
+
+
+    if (itemName && description && stock && itemPrice && promotionalPrice /*&& !someNull */&& longitud
+      && ancho && alto && pesoGr && imagesToSave.length > 0) {
+      postearAddEntity({
+        historyProp: history, entityClass: "products", atributes: {
           "idProveedor": company.id,
           "itemName": itemName,
           "description": description,
-          "images": listimages,
+          "images": imagesToSave,
           "stock": stock,
           "vendidos": 0,
           "itemPrice": itemPrice,
@@ -87,24 +107,10 @@ const AddProduct = (props) => {
           "ancho": ancho,
           "alto": alto,
           "pesoGr": pesoGr
-        })
+        }
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.error) {
-            M.toast({ html: data.error, classes: "#c62828 red darken-3" });
-          } else {
-            M.toast({
-              html: "Producto agregado exitosamente",
-              classes: "#388e3c green darken-2",
-            });
-            history.push("/admin");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     } else {
+
       M.toast({ html: "Llenar todos los campos", classes: "#c62828 red darken-3" });
     }
   };
@@ -164,7 +170,7 @@ const AddProduct = (props) => {
         <form action="#">
           <select type="hidden">
             {url.map(image => {
-              return (<option>{image}</option>)
+              return (<option key={image.toString}>{image}</option>)
             })}
           </select>
           <div className="file-field input-field">
@@ -179,8 +185,8 @@ const AddProduct = (props) => {
         </form>
         <div className="row">
           <div className="col s12">
-            <button onClick={() => {
-              subirYPostearAdd()
+            <button onClick={(e) => {
+              subirYPostearAdd(e)
             }} className="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Agregar Producto</button>
           </div>
         </div>

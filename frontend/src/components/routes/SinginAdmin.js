@@ -30,7 +30,7 @@ const Login = () => {
           localStorage.setItem("user", "admin");
           dispatch({ type: "USER", payload: "admin" });
           M.toast({
-            html: "Loggeado exitosamente",
+            html: "Ha iniciado como Administrador",
             classes: "#388e3c green darken-2",
           });
           history.push("/");

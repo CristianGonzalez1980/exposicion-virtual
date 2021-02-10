@@ -6,7 +6,6 @@ import '../../styles/DeleteBanner.css'
 import uploadImage from "../CloudImageUpload";
 import { postearUpdateEntity } from '../AdminPanel/FetchFunctions'
 
-
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.autocomplete');
   M.Autocomplete.init(elems, {});
@@ -33,7 +32,7 @@ const UpdateProductoForm = (props) => {
     if (postear) {
       postearUpdate();
     }
-  }, [url]);
+  }, [url, product]);
 
   const concatUrls = (urlOfImage) => {
     let newURl = [urlOfImage].concat(url)//foto mas reciente primero
@@ -124,6 +123,7 @@ const UpdateProductoForm = (props) => {
       <form className="col s12">
         <div className="row">
           <div className="input-field col s6">
+            {console.log(product)}
             <input id="ItemName" onChange={(e) => setitemName(e.target.value)} type="text" className="validate" value={itemName} />
             <label className="active" for="ItemName">Nombre del producto</label>
           </div>

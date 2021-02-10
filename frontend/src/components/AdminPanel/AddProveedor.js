@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react'
 import { useHistory/*, Link*/ } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/AddProveedor.css'
@@ -15,9 +14,9 @@ const AddProveedor = (props) => {
   const [companyName, setCompanyName] = useState(null)
   const [companyImage, setCompanyImage] = useState(null)
   const [companyBanner, setCompanyBanner] = useState(null)
-  const [facebook, setfacebook] = useState(null)
-  const [instagram, setinstagram] = useState(null)
-  const [web, setweb] = useState(null)
+  const [facebook, setfacebook] = useState('https://www.facebook.com/......')
+  const [instagram, setinstagram] = useState('https://www.instagram.com/......')
+  const [web, setweb] = useState('https://www...')
 
   document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.autocomplete');

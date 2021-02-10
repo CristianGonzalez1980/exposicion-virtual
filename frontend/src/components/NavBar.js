@@ -44,7 +44,7 @@ const NavBar = () => {
                         localStorage.clear();
                         dispatch({ type: "CLEAR" });
                         M.toast({
-                            html: "Sesión cerrada exitosamente",
+                            html: "Ha cerrado su sesión",
                             classes: "#388e3c green darken-2",
                         });
                         history.push("/");

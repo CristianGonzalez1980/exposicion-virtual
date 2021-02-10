@@ -31,7 +31,7 @@ const Singup = () => {
             M.toast({ html: "Datos invalidos o el usuario ya existe", classes: "#c62828 red darken-3" });
           } else {
             M.toast({
-              html: "Usuario creado exitosamente",
+              html: "Ha creado su usuario",
               classes: "#388e3c green darken-2",
             });
             history.push("/login");
