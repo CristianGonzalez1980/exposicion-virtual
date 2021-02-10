@@ -140,7 +140,7 @@ const ResultSearchProduct = (props) => {
                 <div>
                     <div className="row">
                         <div className="col s2">{orderButton(products)}</div>
-                        <div id= "criteriasel" className="col s4"><h6>{criteria}</h6></div>
+                        <div id="criteriasel" className="col s4"><h6>{criteria}</h6></div>
                     </div>
                 </div>
                 <div className='row'>
@@ -152,7 +152,7 @@ const ResultSearchProduct = (props) => {
                     <div>
                         <div className="row">
                             <div className="col s2">{orderButton(orderProduct)}</div>
-                            <div id= "criteriasel" className="col s4"><h6>{criteria}</h6></div>
+                            <div id="criteriasel" className="col s4"><h6>{criteria}</h6></div>
                         </div>
                     </div>
                     <div className='row'>
@@ -164,7 +164,7 @@ const ResultSearchProduct = (props) => {
                     <div>
                         <div className="row">
                             <div className="col s2">{orderButton(orderProduct)}</div>
-                            <div id= "criteriasel" className="col s4"><h6>{criteria}</h6></div>
+                            <div id="criteriasel" className="col s4"><h6>{criteria}</h6></div>
                         </div>
                     </div>
                     <div className='row'>
