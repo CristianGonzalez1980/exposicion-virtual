@@ -195,7 +195,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>ar.edu.unq.ConextAPIKt</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
