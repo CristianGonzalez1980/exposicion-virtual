@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ar.edu.unq</groupId>
-    <artifactId>expo-virtual</artifactId>
+    <artifactId>exposicion-virtual</artifactId>
     <version>1.0.1</version>
     <packaging>jar</packaging>
 
@@ -119,7 +119,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
+                <version>1.3.72</version>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -179,26 +179,25 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
+                <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
-                            <goal>single</goal>
+                            <goal>copy</goal>
                         </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.github.CristianGonzalez1980 </groupId>
+                                    <artifactId>exposicion-virtual</artifactId>
+                                    <version>2.0.0.0</version>
+                                    <destFileName>exposicion-virtual.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <descriptorRefs>
-                        <!-- This tells Maven to include all dependencies -->
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>Main</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.heroku.sdk</groupId>
