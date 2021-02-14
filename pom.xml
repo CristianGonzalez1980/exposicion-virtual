@@ -205,9 +205,7 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>3.0.3</version>
                 <configuration>
-                    <jdkVersion>1.8</jdkVer
-
-                            sion>
+                    <jdkVersion>1.8</jdkVersion>
                     <appName>exposicion-virtual</appName>
                     <processTypes>
                         <!-- Tell Heroku how to launch your application -->
