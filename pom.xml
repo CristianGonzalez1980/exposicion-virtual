@@ -147,6 +147,20 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+                <plugin>
+                    <!-- Build an executable JAR -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.4</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <mainClass>ar.edu.unq.ConextAPIKt</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -187,20 +201,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>3.0.3</version>
-                <configuration>
-                    <jdkVersion>1.8</jdkVersion>
-                    <appName>exposicion-virtual</appName>
-                    <processTypes>
-                        <!-- Tell Heroku how to launch your application -->
-                        <web>java -jar ./target/exposicion-virtual-1.0-jar-with-dependencies.jar</web>
-                    </processTypes>
-                </configuration>
-
             </plugin>
         </plugins>
     </build>
