@@ -34,5 +34,6 @@ La inversión en si es muy rentable, ya que no solo el flujo de concurrentes hab
 - Heroku (CD)
 
 # Links:
+- URL de la API: https://exposicion-virtual.herokuapp.com/
+- URL de la aplicación web: https://expofront.herokuapp.com/
 
-URL del producto_: localhost:3000
