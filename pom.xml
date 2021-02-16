@@ -114,13 +114,6 @@
             <artifactId> dx-java </artifactId>
             <version> 1.7.1 </version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>3.2.3</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -162,22 +155,24 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.3</version>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>single</goal>
                         </goals>
                         <configuration>
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <transformers>
-                                <transformer implementation=
-                                                     "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>ar.edu.unq.ConextAPIKt</mainClass>
-                                </transformer>
-                            </transformers>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        ar.edu.unq.ConextAPIKt
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
                         </configuration>
                     </execution>
                 </executions>
