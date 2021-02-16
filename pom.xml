@@ -175,7 +175,7 @@
                             <transformers>
                                 <transformer implementation=
                                                      "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>car.edu.unq.ConextAPIKt</mainClass>
+                                    <mainClass>ar.edu.unq.ConextAPIKt</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
