@@ -1,23 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import '.src/index.css';
-import App from '.src/App';
-import * as serviceWorker from '.src/serviceWorker';
+const express = require("express")
+const bodyParser = require("body-parser")
+const path = require("path")
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
-app.listen(port);
+const app = express()
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+app.use(express.static(path.join(__dirname, "build")))
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "build", "index.html"))
+})
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
+app.listen(process.env.PORT || 8080)
