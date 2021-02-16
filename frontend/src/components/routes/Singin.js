@@ -15,7 +15,7 @@ const Login = () => {
     if (dni < 1000000) {
       M.toast({ html: "DNI Inválido", classes: "#c62828 red darken-3" });
     } else {
-      axios.post("http://localhost:7000/login",
+      axios.post("https://exposicion-virtual.herokuapp.com/login",
         {
           dni: dni
         },

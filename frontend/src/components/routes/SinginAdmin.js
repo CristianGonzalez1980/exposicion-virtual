@@ -13,7 +13,7 @@ const Login = () => {
 
 
   const PostData = () => {
-    fetch("http://localhost:7000/login/admin", {
+    fetch("https://exposicion-virtual.herokuapp.com/login/admin", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

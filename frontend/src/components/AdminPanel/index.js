@@ -216,7 +216,7 @@ const TestForm = () => {
 
   const postearPago = (tokenString) => {
     if (cartTotal && unitPrice && email && description && amount && quantity) {//cartTotal && unitPrice && email && description && amount && quantity && token){
-      fetch("http://localhost:7000/process_payment", {
+      fetch("https://exposicion-virtual.herokuapp.com/process_payment", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -270,7 +270,7 @@ const TestForm = () => {
   };
 
   const actualizarBaseDeDatos = () => {
-    fetch("http://localhost:7000/productSales", {
+    fetch("https://exposicion-virtual.herokuapp.com/productSales", {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

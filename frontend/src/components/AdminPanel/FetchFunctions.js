@@ -9,7 +9,7 @@ const postearUpdateEntity = (props) => {
 
     console.log(entityClass)
 
-    fetch(`http://localhost:7000/${entityClass}/${entity.id}`, {
+    fetch(`https://exposicion-virtual.herokuapp.com/${entityClass}/${entity.id}`, {
         method: "PUT",
         headers: {
             "Content-type": "application/json",
@@ -54,7 +54,7 @@ const postearAddEntity = (props) => {
     const entityClass = props.entityClass
     const atributes = props.atributes
 
-    fetch(`http://localhost:7000/${entityClass}`, {
+    fetch(`https://exposicion-virtual.herokuapp.com/${entityClass}`, {
         method: "POST",
         headers: {
             "Content-type": "application/json",
@@ -87,7 +87,7 @@ const postearDeleteEntity = (props) => {
     const entityClass = props.entityClass
     const id = props.id
 
-    fetch(`http://localhost:7000/${entityClass}/${id}`, {
+    fetch(`https://exposicion-virtual.herokuapp.com/${entityClass}/${id}`, {
         method: 'DELETE',
         headers: {
         }
@@ -114,7 +114,7 @@ const postearGetEntity = (props) => {
     const entityClass = props.entityClass
     const functionD = props.fx
 
-    fetch(`http://localhost:7000/${entityClass}`, {
+    fetch(`https://exposicion-virtual.herokuapp.com/${entityClass}`, {
         headers: {
         }
     })

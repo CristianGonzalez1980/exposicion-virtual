@@ -57,12 +57,12 @@ const UpdateProveedorForm = (props) => {
 
   const postearUpdate = () => {
     console.log("entreaPostearUpdate")
-    if(!subir){
-      setUrlBanner(companyBanner)
-      setUrlImage(companyImage)
-    }
-    console.log(urlImage)
-    console.log(urlBanner)
+  //  if (!subir) {
+  //    setUrlBanner(companyBanner)
+  //    setUrlImage(companyImage)
+  //  }
+  //  console.log(urlImage)
+  //  console.log(urlBanner)
     postearUpdateEntity({
       historyProp: history, entityClass: "companies", entity: company, atributes: {
         "companyName": companyName,
@@ -114,7 +114,7 @@ const UpdateProveedorForm = (props) => {
                 const imgobj = e.target.files[0]
                 /*   setCompanyImage(imgobj)*/
                 setTempImage(imgobj)
-                setSubir(true)
+              //  setSubir(true)
               }} />
             </div>
             <div class="file-path-wrapper">
@@ -130,7 +130,7 @@ const UpdateProveedorForm = (props) => {
                 const imgobj = e.target.files[0]
                 /* setCompanyBanner(imgobj)*/
                 setTempBanner(imgobj)
-                setSubir(true)
+             //   setSubir(true)
               }} />
             </div>
             <div class="file-path-wrapper">
@@ -141,14 +141,14 @@ const UpdateProveedorForm = (props) => {
         <div class="row">
           <div class="col s12">
             <a onClick={() => {
-              if (subir) {
-                console.log("MODIFIQUE IMAGENES")
-                agregarProveedor();
-                /*setpostear(true)*/
-              } else {
-                console.log("NO MODIFIQUE IMAGENES")
-                postearUpdate()
-              }
+              //   if (subir) {
+              //     console.log("MODIFIQUE IMAGENES")
+              agregarProveedor();
+              /*setpostear(true)*/
+              //    } else {
+              //      console.log("NO MODIFIQUE IMAGENES")
+              //      postearUpdate()
+              //    }
             }
             }
               class="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Modificar Proveedor</a>

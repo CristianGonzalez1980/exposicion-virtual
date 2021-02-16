@@ -14,7 +14,7 @@ const Singup = () => {
     if (!(nombre && apellido && dni)) {
       M.toast({ html: "Debe ingresar todos los datos", classes: "#c62828 red darken-3" });
     } else {
-      fetch("http://localhost:7000/register", {
+      fetch("https://exposicion-virtual.herokuapp.com/register", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
