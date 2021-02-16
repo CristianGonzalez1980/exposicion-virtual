@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ResultSearchProduct from './ResultSearchProduct'
+import { postearGetEntity } from "./AdminPanel/FetchFunctions";
+import '../styles/ResultSearchProduct.css'
 
 const ResultSearch = () => {
 
@@ -10,17 +12,18 @@ const ResultSearch = () => {
     const textoBusqueda = () => {
         if(products.length > 0){
             return (
-                <h2>
-                   Resultado de búsqueda para "{textsearch}" 
+                <h2 id="googleFont">
+                  Resultado de búsqueda para "{textsearch}" 
                 </h2>
             )
         }else{
-          if(textsearch === "_"){
+          if(products.length === 0){
             return(
-            <h2>
-              No existen resultados para la búsqueda 
-            </h2>)
+              <h2 id="googleFont">
+                No existen resultados para la búsqueda 
+              </h2>)
           }else{
+            console.log(textsearch)
             return (
               <div className="preloader-wrapper active">
                 <div className="spinner-layer spinner-red-only">
@@ -38,28 +41,23 @@ const ResultSearch = () => {
         }
     }
 
+    const productsSetter = (result) => {
+      setProductos(result.Products)
+    }
+
     useEffect(() => {  
-          fetch(`http://localhost:7000/products/search?text=${textsearch}`, {
-            headers: {
-            }
-          })
-            .then((res)=> {
-              if(res.ok){
-                return res.json()
-            }})
-            .then((result)=>{
-              setProductos(result.Products)        
-            })
-            .catch((err => {
-              console.log(err)
-            }))
+      postearGetEntity({ entityClass: `products/search?text=${textsearch}`, fx: productsSetter });
       }, [textsearch]);
 
       console.log(products)
     return (
         <div>
+            {products.length !== 0 ?
+            <div>
             {textoBusqueda()}
             <ResultSearchProduct products={products}/>
+            </div>
+          : textoBusqueda()}
         </div>
     )
 }

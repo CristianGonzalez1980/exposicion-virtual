@@ -4,6 +4,7 @@ import UpdateProveedorForm from './UpdateProveedorForm'
 import AdminOptions from '../AdminOptions';
 import CardProviderwFx from './CardProviderwFx';
 import AdminProveedorSearchBar from '../AdminProveedorSearchBar';
+import { postearGetEntity } from '../AdminPanel/FetchFunctions';
 
 const UpdateProveedor = () => {
   const [companies, setCompanies] = useState([])
@@ -11,21 +12,11 @@ const UpdateProveedor = () => {
   const [search, setsearch] = useState(null)
 
   useEffect(() => {
-    fetch("http://localhost:7000/companies", {
-      headers: {
-      }
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-      })
-      .then((result) => {
-        setCompanies(result)
-      })
-      .catch((err => {
-        console.log(err)
-      }))
+    if (companies.length === 0) {
+      postearGetEntity({
+        entityClass: "companies", fx: setCompanies
+      });
+    }
   }, [cliked, search])
 
   const updateCompany = (company) => {

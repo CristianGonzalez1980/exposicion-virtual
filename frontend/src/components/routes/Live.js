@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import '../../styles/Live.css';
+import { postearGetEntity } from "../AdminPanel/FetchFunctions";
 
 const Live = () => {
   const [classes, setClasses] = useState(null)
@@ -8,40 +9,10 @@ const Live = () => {
 
   useEffect(() => {
     if (!schedule) {
-      fetch("http://localhost:7000/banners/SCHEDULE", {
-        headers: {
-
-        }
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          setschedule(result)
-        })
-        .catch((err => {
-          console.log(err)
-        }))
-
-      if (!classes) {
-        fetch("http://localhost:7000/banners/CLASS", {
-          headers: {
-          }
-        })
-          .then((res) => {
-            if (res.ok) {
-              return res.json()
-            }
-          })
-          .then((result) => {
-            setClasses(result)
-          })
-          .catch((err => {
-            console.log(err)
-          }))
-      }
+      postearGetEntity({ entityClass: "banners/SCHEDULE", fx: setschedule })
+    }
+    if (!classes) {
+      postearGetEntity({ entityClass: "banners/CLASS", fx: setClasses })
     }
   }, [classes, schedule])
 
@@ -69,7 +40,7 @@ const Live = () => {
       <div>
         {
           schedule ?
-            <img atl="img" id="imgSchedule" src={schedule[0].image}></img>
+            <img alt="img" id="imgSchedule" src={schedule[0].image}></img>
             :
             <div>
               <div class="preloader-wrapper big active">

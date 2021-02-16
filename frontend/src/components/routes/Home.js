@@ -5,6 +5,7 @@ import '../../styles/Home.css'
 import { Carousel } from "react-materialize"
 import SliderProducts from '../SliderProducts'
 import Banner from '../Banner'
+import { postearGetEntity } from "../AdminPanel/FetchFunctions";
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems2 = document.querySelectorAll('.slider');
@@ -14,31 +15,17 @@ document.addEventListener('DOMContentLoaded', function () {
 const Home = () => {
   const [companyImage, setConpanyImage] = useState(null)
 
+  const imagesCompaniesMap = (companies) => {
+    const images = companies.map((company) =>
+      company.companyImage
+    )
+    console.log(images)
+    setConpanyImage(images)
+  }
+
   useEffect(() => {
     if (!companyImage) {
-      fetch("http://localhost:7000/companies", {
-        headers: {
-        }
-      })
-        .then((res) => {
-          console.log(res)
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          console.log(result)
-          if (result) {
-            const rta = result.map((company) =>
-              company.companyImage
-            )
-            console.log(rta)
-            setConpanyImage(rta)
-          }
-        })
-        .catch((err => {
-          console.log(err)
-        }))
+      postearGetEntity({ entityClass: "companies", fx: imagesCompaniesMap })
     }
   }, [companyImage]);
 

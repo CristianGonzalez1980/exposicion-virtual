@@ -2,112 +2,72 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import M from 'materialize-css'
-import postearUpdateEntity from '../AdminPanel/FetchFunctions'
+import { postearUpdateEntity } from '../AdminPanel/FetchFunctions'
+import uploadImage from "../CloudImageUpload";
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.autocomplete');
-  var instances = M.Autocomplete.init(elems, {});
+  /*var instances = */M.Autocomplete.init(elems, {});
 });
 
 const UpdateProveedorForm = (props) => {
-  const history = useHistory();
+  const history = useHistory()
   const company = props.company
-  const [urlimage, setUrlimage] = useState(null);
-  const [urlBanner, setUrlBanner] = useState(null);
-  const [companyName, setcompanyName] = useState(company.companyName)
-  const [companyImage, setcompanyImage] = useState(company.companyImage)
-  const [companyBanner, setcompanyBanner] = useState(company.companyBanner)
+  const [urlImage, setUrlImage] = useState(null)
+  const [urlBanner, setUrlBanner] = useState(null)
+  const [companyName, setCompanyName] = useState(company.companyName)
+  const [companyImage, setCompanyImage] = useState(company.companyImage)
+  const [companyBanner, setCompanyBanner] = useState(company.companyBanner)
+  const [tempBanner, setTempBanner] = useState(null)
+  const [tempImage, setTempImage] = useState(null)
   const [facebook, setfacebook] = useState(company.facebook)
   const [instagram, setinstagram] = useState(company.instagram)
   const [web, setweb] = useState(company.web)
   const [subir, setSubir] = useState(false)
-  const [postear, setpostear] = useState(false)
+  //const [postear, setPostear] = useState(false)
 
   useEffect(() => {
-    if (urlimage && urlBanner) {
+    if ((urlImage !== null) && (urlBanner !== null)) {
       postearUpdate();
     }
-  }, [urlimage, urlBanner]);
+  }, [urlImage, urlBanner, company]);
 
   const agregarProveedor = () => {
-    console.log("preguntandoSiSubeImagen")
+
     if (SubirAlaNubeImagen()) {
-      console.log("POSITIVOSiSubeImagen")
-      const data = new FormData();
-      data.append("file", companyImage);
-      data.append("upload_preset", "development");
-      data.append("cloud_name", "expovirtual");
-      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setUrlimage(data.url);
-          setpostear(true)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      uploadImage({ image: tempImage, fx: setUrlImage });
     } else {
-      console.log("NEGATIVOiSubeImagen")
-      setUrlimage(companyImage)
+      setUrlImage(companyImage)
     }
-    console.log("preguntandoSiSubeBanner")
+
     if (SubirAlaNubeBanner()) {
-      console.log("POSITIVOSiSubeBanner")
-      const data = new FormData();
-      data.append("file", companyBanner);
-      data.append("upload_preset", "development");
-      data.append("cloud_name", "expovirtual");
-      fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setUrlBanner(data.url);
-          setpostear(true)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      uploadImage({ image: tempBanner, fx: setUrlBanner });
     } else {
       setUrlBanner(companyBanner)
     }
   };
 
   const SubirAlaNubeImagen = () => {
-    return (typeof companyImage !== "string")
+    return (tempImage !== null)
   }
 
   const SubirAlaNubeBanner = () => {
-    return (typeof companyBanner !== "string")
-  }
-
-  const postComapanyImage = () => {
-    if (SubirAlaNubeImagen()) {
-      return urlimage
-    } else {
-      return companyImage
-    }
-  }
-
-  const postCompanyBanner = () => {
-    if (SubirAlaNubeBanner()) {
-      return urlBanner
-    } else {
-      return companyBanner
-    }
+    return (tempBanner !== null)
   }
 
   const postearUpdate = () => {
-
+    console.log("entreaPostearUpdate")
+  //  if (!subir) {
+  //    setUrlBanner(companyBanner)
+  //    setUrlImage(companyImage)
+  //  }
+  //  console.log(urlImage)
+  //  console.log(urlBanner)
     postearUpdateEntity({
       historyProp: history, entityClass: "companies", entity: company, atributes: {
         "companyName": companyName,
-        "companyImage": postComapanyImage(),
-        "companyBanner": postCompanyBanner(),
+        "companyImage": urlImage,
+        "companyBanner": urlBanner,
         "facebook": facebook,
         "instagram": instagram,
         "web": web
@@ -124,7 +84,7 @@ const UpdateProveedorForm = (props) => {
           <div class="input-field col s6">
             <input
               id="Nombre_de_la_Empresa" onChange={(e) => {
-                setcompanyName(e.target.value)
+                setCompanyName(e.target.value)
                 console.log(companyName)
               }} type="text" class="validate" value={companyName} />
             <label class="active" for="Nombre_de_la_Empresa">Nombre de la Empresa</label>
@@ -151,12 +111,14 @@ const UpdateProveedorForm = (props) => {
             <div class="btn" id='buttonUploadImages'>
               <span>Cargar Imagen</span>
               <input type="file" onChange={(e) => {
-                setcompanyImage(e.target.files[0])
-                setSubir(true)
+                const imgobj = e.target.files[0]
+                /*   setCompanyImage(imgobj)*/
+                setTempImage(imgobj)
+              //  setSubir(true)
               }} />
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" value={typeof companyImage !== 'string' ? companyImage.name : companyImage} />
+              <input class="file-path validate" type="text" value={tempImage !== null ? tempImage.name : companyImage} />
             </div>
           </div>
         </form>
@@ -165,26 +127,28 @@ const UpdateProveedorForm = (props) => {
             <div class="btn" id='buttonUploadBanner'>
               <span>Cargar Banner</span>
               <input type="file" onChange={(e) => {
-                setcompanyBanner(e.target.files[0])
-                setSubir(true)
+                const imgobj = e.target.files[0]
+                /* setCompanyBanner(imgobj)*/
+                setTempBanner(imgobj)
+             //   setSubir(true)
               }} />
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" value={typeof companyBanner !== 'string' ? companyBanner.name : companyBanner} />
+              <input class="file-path validate" type="text" value={tempBanner !== null ? tempBanner.name : companyBanner} />
             </div>
           </div>
         </form>
         <div class="row">
           <div class="col s12">
             <a onClick={() => {
-              if (subir) {
-                console.log("ENTRE AL SUBIR VERDADERO")
-                agregarProveedor();
-                setpostear(true)
-              } else {
-                console.log("ENTRE AL SUBIR FALSO")
-                postearUpdate()
-              }
+              //   if (subir) {
+              //     console.log("MODIFIQUE IMAGENES")
+              agregarProveedor();
+              /*setpostear(true)*/
+              //    } else {
+              //      console.log("NO MODIFIQUE IMAGENES")
+              //      postearUpdate()
+              //    }
             }
             }
               class="waves-effect waves-light red lighten-2 btn-large" id="butonSubmit">Modificar Proveedor</a>

@@ -13,8 +13,8 @@ const ProductCard = (props) => {
         <div className="col s1" id='colCard'>
             <div className="card" id='cardViewProveedor_Product'>
                 <div className="card-image">
-                    <img src={product.images[0]} />
-                    <a onClick={() => { funcionD(products, product) }} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">{iconFx}</i></a>
+                    <img alt="productImage" src={product.images[0]} />
+                    <button onClick={() => { funcionD(products, product) }} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">{iconFx}</i></button>
                 </div>
                 <div className="card-content">
                     <strong><p> {product.itemName}</p></strong>

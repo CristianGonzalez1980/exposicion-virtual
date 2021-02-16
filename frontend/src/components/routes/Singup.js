@@ -14,7 +14,7 @@ const Singup = () => {
     if (!(nombre && apellido && dni)) {
       M.toast({ html: "Debe ingresar todos los datos", classes: "#c62828 red darken-3" });
     } else {
-      fetch("http://localhost:7000/register", {
+      fetch("https://exposicion-virtual.herokuapp.com/register", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -31,7 +31,7 @@ const Singup = () => {
             M.toast({ html: "Datos invalidos o el usuario ya existe", classes: "#c62828 red darken-3" });
           } else {
             M.toast({
-              html: "Usuario creado exitosamente",
+              html: "Ha creado su usuario",
               classes: "#388e3c green darken-2",
             });
             history.push("/login");
@@ -53,21 +53,21 @@ const Singup = () => {
         <img alt='logo' className="logo-login" src={logo} />
         <input
           type="text"
-          placeholder="Intruduzca su nombre"
+          placeholder="Ingrese nombre"
           id='inputLogin'
           value={nombre}
           onChange={(e) => setnombre(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Intruduzca su apellido"
+          placeholder="Ingrese apellido"
           id='inputLogin'
           value={apellido}
           onChange={(e) => setapellido(e.target.value)}
         />
         <input
           type="number"
-          placeholder="Intruduzca su DNI"
+          placeholder="Ingrese DNI"
           id='inputLogin'
           value={dni}
           onChange={(e) => setdni(e.target.value)}
@@ -80,7 +80,7 @@ const Singup = () => {
           Registrar
         </button>
         <h5 id="H5Register">
-          <Link id="linkRegister" to="/login">Ya te encuentras registrado ?</Link>
+          <Link id="linkRegister" to="/login">Ya estas registrado?</Link>
         </h5>
       </div>
     </div>

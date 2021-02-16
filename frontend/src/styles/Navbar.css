@@ -71,10 +71,12 @@ nav {
 }
 
 #usuario {
-  font-size: 20px;
-  font-family: "Lemonada";
+  font-size: 25px;
+  /*font-family: "Lemonada";*/
   color: aliceblue;
-  margin-top: 35px;
+  margin-top: 25px;
+  font-family: "Dancing Script", cursive;
+  text-shadow: 1px 1px hsla(0, 0%, 0%, 0.658);
 }
 
 [type="search"] {

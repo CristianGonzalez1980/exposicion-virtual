@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import M from 'materialize-css'
 import '../../styles/DeleteBanner.css'
+import uploadImage from "../CloudImageUpload";
+import { postearUpdateEntity } from '../AdminPanel/FetchFunctions'
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.autocomplete');
@@ -30,45 +32,28 @@ const UpdateProductoForm = (props) => {
     if (postear) {
       postearUpdate();
     }
-  }, [url]);
+  }, [url, product]);
+
+  const concatUrls = (urlOfImage) => {
+    let newURl = [urlOfImage].concat(url)//foto mas reciente primero
+    setpostear(true);
+    setUrl(newURl);
+  }
 
   const agregarProducto = () => {
     if (subir) {
       console.log("ENTRE AL SUBIR")
       for (let index = 0; index < images.length; index++) {
         const image = images[index];
-        const data = new FormData();
-        data.append("file", image);
-        data.append("upload_preset", "development");
-        data.append("cloud_name", "expovirtual");
-        fetch("https://api.cloudinary.com/v1_1/expovirtual/image/upload", {
-          method: "POST",
-          body: data,
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data.url);
-            console.log(url);
-            let newURl = [data.url].concat(url)
-            console.log(newURl)
-            setUrl(newURl);
-            console.log(url);
-            setpostear(true)
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        uploadImage({ image: image, fx: concatUrls });
       }
     }
   };
 
   const postearUpdate = () => {
-    fetch(`http://localhost:7000/products/${product.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
+    console.log("entreaPostearUpdate")
+    postearUpdateEntity({
+      historyProp: history, entityClass: "products", entity: product, atributes: {
         "idProveedor": product.idProveedor,
         "itemName": itemName,
         "description": description,
@@ -81,23 +66,8 @@ const UpdateProductoForm = (props) => {
         "ancho": ancho,
         "alto": alto,
         "pesoGr": pesoGr
-      })
+      }
     })
-      .then((res) => {
-        console.log(res)
-        if (res.ok) {
-          M.toast({
-            html: "Producto modificado exitosamente",
-            classes: "#388e3c green darken-2",
-          });
-          history.push("/admin");
-        } else {
-          M.toast({ html: res.statusText, classes: "#c62828 red darken-3" });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   const eliminarImagen = (item) => {
@@ -153,6 +123,7 @@ const UpdateProductoForm = (props) => {
       <form className="col s12">
         <div className="row">
           <div className="input-field col s6">
+            {console.log(product)}
             <input id="ItemName" onChange={(e) => setitemName(e.target.value)} type="text" className="validate" value={itemName} />
             <label className="active" for="ItemName">Nombre del producto</label>
           </div>
@@ -215,7 +186,7 @@ const UpdateProductoForm = (props) => {
             <a onClick={() => {
               if (subir) {
                 agregarProducto();
-                setpostear(true)
+                //setpostear(true)
               } else {
                 postearUpdate()
               }

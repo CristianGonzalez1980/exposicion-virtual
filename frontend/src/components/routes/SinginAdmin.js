@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState/*, useEffect*/, useContext } from "react";
 import { userContext } from "../../App"
 import "../../styles/Singin.css";
 import { Link, useHistory } from "react-router-dom";
@@ -9,11 +9,11 @@ const Login = () => {
   const history = useHistory();
   const [mail, setmail] = useState(null);
   const [password, setpassword] = useState(null);
-  const { state, dispatch } = useContext(userContext);
+  const { /*state, */dispatch } = useContext(userContext);
 
 
   const PostData = () => {
-    fetch("http://localhost:7000/login/admin", {
+    fetch("https://exposicion-virtual.herokuapp.com/login/admin", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -30,7 +30,7 @@ const Login = () => {
           localStorage.setItem("user", "admin");
           dispatch({ type: "USER", payload: "admin" });
           M.toast({
-            html: "Loggeado exitosamente",
+            html: "Ha iniciado como Administrador",
             classes: "#388e3c green darken-2",
           });
           history.push("/");
@@ -48,14 +48,14 @@ const Login = () => {
         <input
           type="text"
           id='inputLogin'
-          placeholder="Ingrese su Usuario"
+          placeholder="Ingrese usuario"
           value={mail}
           onChange={(e) => setmail(e.target.value)}
         />
         <input
           type="password"
           id='inputLogin'
-          placeholder="Ingrese su contraseña"
+          placeholder="Ingrese contraseña"
           value={password}
           onChange={(e) => setpassword(e.target.value)}
         />

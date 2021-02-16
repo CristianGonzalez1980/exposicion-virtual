@@ -1,27 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Slider, Slide, Caption } from 'react-materialize'
 import "../styles/Banner.css";
+import { postearGetEntity } from "./AdminPanel/FetchFunctions";
 
 const Banner = () => {
   const [banners, setbanners] = useState(null)
 
   useEffect(() => {
     if (!banners) {
-      fetch("http://localhost:7000/banners/HOME", {
-        headers: {
-        }
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          setbanners(result)
-        })
-        .catch((err => {
-          console.log(err)
-        }))
+      postearGetEntity({ entityClass: "banners/HOME", fx: setbanners });
     }
   }, [banners])
 

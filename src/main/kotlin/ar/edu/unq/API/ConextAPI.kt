@@ -49,7 +49,7 @@ fun main(args: Array<String>) {
         it.header("Access-Control-Allow-Origin", "*")
     }
 
-    app.start(7000)
+    app.start(getHerokuAssignedPort())
     app.routes {
         path("/process_payment") {
             post(paymentController::processPayment, mutableSetOf<Role>(Roles.ANYONE,Roles.USER))
@@ -128,4 +128,9 @@ fun main(args: Array<String>) {
             put(productController::decreaseProduct, mutableSetOf<Role>(Roles.ANYONE,Roles.USER))
         }
     }
+}
+
+private fun getHerokuAssignedPort(): Int {
+    val herokuPort = System.getenv("PORT")
+    return herokuPort?.toInt() ?: 7000
 }

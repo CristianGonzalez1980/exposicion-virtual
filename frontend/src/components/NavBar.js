@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const NavBar = () => {
-    const [textsearch, setTextSearch] = useState(null)
+    const [textsearch, setTextSearch] = useState("")
     const history = useHistory()
     const { state, dispatch } = useContext(userContext);
     const [mouse, setMouse] = useState(false)
@@ -44,7 +44,7 @@ const NavBar = () => {
                         localStorage.clear();
                         dispatch({ type: "CLEAR" });
                         M.toast({
-                            html: "Sesión cerrada exitosamente",
+                            html: "Ha cerrado su sesión",
                             classes: "#388e3c green darken-2",
                         });
                         history.push("/");

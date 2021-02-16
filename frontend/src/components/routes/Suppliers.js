@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import M from 'materialize-css'
 import ProveedorConProductos from '../ProveedorConProductos'
 import "../../styles/Suppliers.css"
+import { postearGetEntity } from "../AdminPanel/FetchFunctions";
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.slider');
@@ -11,24 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const Suppliers = () => {
   const [companies, setCompanies] = useState(null)
+
   useEffect(() => {
     if (!companies) {
-      fetch("http://localhost:7000/companies", {
-        headers: {
-        }
-      })
-        .then((res) => {
-          console.log(res)
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          console.log(result)
-          setCompanies(result)
-        })
-        .catch((err => {
-        }))
+      postearGetEntity({ entityClass: "companies", fx: setCompanies });
     }
   }, [companies])
 

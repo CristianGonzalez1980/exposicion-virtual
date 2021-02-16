@@ -9,32 +9,41 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const AdminOptions = () => {
+
+    const adminButtons = (props) => {
+
+        var buttonsGroup = props.allButtons
+
+        const list = buttonsGroup.map((button) => {
+            const links = button.buttons.map((buttonLink) => {
+                return (
+                    <Link className="waves-effect waves-light red lighten-2 btn-large" to={buttonLink.route} >{buttonLink.name}</Link>
+                )
+            })
+            return (
+                <li>
+                    <div className="collapsible-header"><i className="material-icons">{button.icon}</i>{button.name}</div>
+                    <div className="collapsible-body">
+                        {links}
+                    </div>
+                </li>
+            )
+        })
+        return (
+            list
+        )
+    }
+
     return (
         <div className="col s4">
-            <ul className="collapsible">
-                <li>
-                    <div className="collapsible-header"><i className="material-icons">Proveedores</i>Proveedores</div>
-                    <div className="collapsible-body">
-                        <Link className="waves-effect waves-light red lighten-2 btn-large" to="/admin/agregarproveedor">Agregar Proveedor</Link>
-                        <Link className="waves-effect waves-light red lighten-2 btn-large" to="/admin/modificarproveedor">Modificar Proveedor</Link>
-                        <Link className="waves-effect waves-light red lighten-2 btn-large" to="/admin/borrarproveedor">Eliminar Proveedor</Link>
-                    </div>
-                </li>
-                <li>
-                    <div className="collapsible-header"><i className="material-icons">place</i>Productos</div>
-                    <div className="collapsible-body">
-                        <Link className="waves-effect waves-light red lighten-2 btn-large" to="/admin/agregarproducto">Agregar Productos</Link>
-                        <Link className="waves-effect waves-light red lighten-2 btn-large" to="/admin/modificarproducto">Modificar Productos</Link>
-                        <Link className="waves-effect waves-light red lighten-2 btn-large" to="/admin/borrarproducto">Eliminar Productos</Link>
-                    </div>
-                </li>
-                <li>
-                    <div className="collapsible-header"><i className="material-icons">whatshot</i>Banners</div>
-                    <div className="collapsible-body">
-                        <Link className="waves-effect waves-light red lighten-2 btn-large" to="/admin/agregarbanner">Agregar Banner</Link>
-                        <Link className="waves-effect waves-light red lighten-2 btn-large" to="/admin/borrarbanner" >Eliminar Banner</Link>
-                    </div>
-                </li>
+            <ul className="collapsible">{
+                adminButtons({
+                    allButtons: [
+                        { icon: "store_mall_directory", name: "Proveedores", buttons: [{ route: "/admin/agregarproveedor", name: "Agregar Proveedor" }, { route: "/admin/modificarproveedor", name: "Modificar Proveedor" }, { route: "/admin/borrarproveedor", name: "Eliminar Proveedor" }] },
+                        { icon: "personal_video", name: "Productos", buttons: [{ route: "/admin/agregarproducto", name: "Agregar Producto" }, { route: "/admin/modificarproducto", name: "Modificar Producto" }, { route: "/admin/borrarproducto", name: "Eliminar Producto" }] },
+                        { icon: "local_movies", name: "Banners", buttons: [{ route: "/admin/agregarbanner", name: "Agregar Banner" }, { route: "/admin/borrarbanner", name: "Eliminar Banner" }] }
+                    ]
+                })}
             </ul>
         </div>
     );

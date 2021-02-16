@@ -1,34 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect/*, useRef*/ } from 'react'
 import UpdateProductoForm from './UpdateProductoForm'
 import '../../styles/ListOfProductToUpdate.css'
 import AdminProductSearchBar from '../AdminProductSearchBar'
 import CardProductwFx from './CardProductwFx';
+import { postearGetEntity } from '../AdminPanel/FetchFunctions';
 
 const ListOfProductToUpdate = (props) => {
   const company = props.company
   const [products, setproducts] = useState([])
   const [cliked, setCliked] = useState(null)
-  const [prevProducts, setprevProducts] = useState([])
+  //const [prevProducts, setprevProducts] = useState([])
 
   useEffect(() => {
     if (products.length === 0) {
-      fetch(`http://localhost:7000/products/supplier/${company.id}`, {
-        headers: {
-        }
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json()
-          }
-        })
-        .then((result) => {
-          setproducts(result)
-        })
-        .catch((err => {
-          console.log(err)
-        }))
+      postearGetEntity({
+        entityClass: `products/supplier/${company.id}`, fx: setproducts
+      });
     }
-  }, [products])
+  }, [])
 
   const doUpdateProduct = (products, product) => {
     setCliked(<UpdateProductoForm product={product} />)
